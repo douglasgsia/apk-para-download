@@ -1,45 +1,31 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080707">
   <meta name="description" content="CASHMOVIE — Central de Downloads.">
   <title>CASHMOVIE | Central de Downloads</title>
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Painel de apoio e contato */
-    .support-panel {
-      position: static !important;
-      max-height: none !important;
-      height: auto !important;
-      overflow: visible !important;
-      box-sizing: border-box;
-    }
-
-    .support-panel[hidden] {
-      display: none !important;
-    }
-
+    /* WhatsApp dentro do painel lateral original */
     .whatsapp-section {
-      display: block !important;
       width: 100%;
       box-sizing: border-box;
-      margin-top: 24px;
-      padding: 20px;
-      overflow: visible;
+      margin-top: 20px;
+      padding: 16px;
       background: #111010;
       border: 1px solid #352323;
-      border-radius: 16px;
-      color: #ffffff;
+      border-radius: 14px;
+      color: #fff;
     }
 
     .whatsapp-heading {
       margin: 0 0 12px;
-      color: #ffffff;
-      font-size: 22px;
+      color: #fff;
+      font-size: 19px;
       font-weight: 800;
       line-height: 1.35;
       text-align: center;
@@ -51,9 +37,9 @@
     }
 
     .whatsapp-description {
-      margin: 0 0 18px;
+      margin: 0 0 16px;
       color: #c9c9c9;
-      font-size: 14px;
+      font-size: 12px;
       line-height: 1.6;
       text-align: center;
     }
@@ -62,33 +48,32 @@
       display: flex !important;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
-      min-height: 68px;
+      min-height: 64px;
       box-sizing: border-box;
-      padding: 14px 18px;
+      padding: 12px;
       border: 0;
-      border-radius: 12px;
+      border-radius: 10px;
       background: #25D366;
-      color: #ffffff !important;
+      color: #fff !important;
       text-align: center;
       text-decoration: none !important;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 800;
       line-height: 1.4;
       overflow-wrap: anywhere;
       cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
+      transition: background .2s ease;
     }
 
     .whatsapp-button:hover {
       background: #1fbd5b;
-      transform: translateY(-2px);
     }
 
     .whatsapp-icon {
       flex-shrink: 0;
-      font-size: 28px;
+      font-size: 27px;
     }
 
     .whatsapp-button-text {
@@ -98,25 +83,14 @@
     }
 
     .whatsapp-button-text small {
-      margin-top: 3px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
+      margin-top: 4px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .3px;
     }
 
-    @media (max-width: 480px) {
-      .whatsapp-section {
-        padding: 16px;
-      }
-
-      .whatsapp-heading {
-        font-size: 20px;
-      }
-
-      .whatsapp-button {
-        font-size: 15px;
-      }
-    }
+    /* O painel continua usando o posicionamento do style.css.
+       Não definir position: static aqui. */
   </style>
 </head>
 
@@ -134,10 +108,7 @@
             CENTRAL DE DOWNLOADS
           </div>
 
-          <h1>
-            Seus aplicativos.<br>
-            <span>Em um só lugar.</span>
-          </h1>
+          <h1>Seus aplicativos.<br><span>Em um só lugar.</span></h1>
         </div>
 
         <a class="cinema-logo" href="#top" aria-label="CASHMOVIE">
@@ -191,10 +162,11 @@
     </small>
   </footer>
 
+  <!-- PAINEL LATERAL: PIX E WHATSAPP -->
   <aside
     class="support-panel"
     id="support-panel"
-    aria-label="Apoie o projeto"
+    aria-label="Apoio e contato"
     hidden
   >
     <button
@@ -204,6 +176,7 @@
       aria-label="Fechar painel"
     >×</button>
 
+    <!-- APOIO PIX -->
     <div class="support-heading">
       <span class="support-heart">♥</span>
       <h2>Apoie o projeto</h2>
@@ -238,7 +211,7 @@
       aria-live="polite"
     ></p>
 
-    <!-- CONTATO PELO WHATSAPP: BOTÃO EM TODOS OS DISPOSITIVOS -->
+    <!-- WHATSAPP LOGO ABAIXO DO PIX, NO MESMO PAINEL -->
     <section class="whatsapp-section" id="whatsapp-contact">
       <h2 class="whatsapp-heading">
         ADQUIRA NOSSA LISTA
@@ -276,23 +249,21 @@
 
       const panel = document.getElementById("support-panel");
       const reopen = document.getElementById("support-reopen");
+      const closeButton = document.getElementById("support-close");
       const copyButton = document.getElementById("support-copy");
       const pixKeyElement = document.getElementById("pix-key");
       const feedback = document.getElementById("support-feedback");
-      const closeButton = document.getElementById("support-close");
 
-      if (!panel || !reopen || !copyButton || !pixKeyElement) {
+      if (!panel || !reopen || !closeButton || !copyButton) {
         return;
       }
 
       pixKeyElement.textContent = PIX_KEY;
-      copyButton.disabled = false;
 
       reopen.addEventListener("click", (event) => {
         event.preventDefault();
         panel.hidden = false;
         reopen.hidden = true;
-        panel.scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
       closeButton.addEventListener("click", () => {
@@ -304,7 +275,7 @@
         try {
           await navigator.clipboard.writeText(PIX_KEY);
           feedback.textContent = "Chave PIX copiada!";
-        } catch (error) {
+        } catch {
           feedback.textContent =
             "Não foi possível copiar automaticamente. Copie a chave PIX manualmente.";
         }
