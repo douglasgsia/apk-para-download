@@ -23,5 +23,13 @@ window.apps = [
     version: "APK para TV",
     icon: "https://raw.githubusercontent.com/douglasgsia/apk-para-download/main/imagens/ibonew.jpg",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/IboNew.apk"
+  },
+  {
+    name: "RX Purple",
+    category: "Players",
+    description: "Aplicativo RX Purple para dispositivos Android compatíveis.",
+    version: "APK",
+    icon: "https://raw.githubusercontent.com/douglasgsia/apk-para-download/main/imagens/rxpurple.jpg",
+    url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/RX.Purple.apk"
   }
 ];
