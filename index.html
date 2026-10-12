@@ -10,30 +10,53 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Painel de apoio sempre aberto */
-    .support-panel {
-      display: block !important;
-      position: fixed;
-      z-index: 9999;
+    /* Banner responsivo: mantém a imagem inteira no celular */
+    .hero {
+      width: 100%;
+      height: clamp(100px, 17.5vw, 300px);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
 
-    .support-panel[hidden] {
-      display: block !important;
-    }
-
-    /* Remove os controles de fechar e reabrir */
-    .support-close,
-    .support-reopen {
+    /* Esconde o botão que reabria o painel */
+    .support-reopen,
+    .support-close {
       display: none !important;
     }
 
-    /* Imagem verdadeira do QR Code PIX */
+    /* O painel fica no fluxo normal da página */
+    .support-panel {
+      display: block !important;
+      position: static !important;
+      top: auto !important;
+      right: auto !important;
+      width: min(400px, calc(100% - 24px)) !important;
+      max-width: 400px !important;
+      max-height: none !important;
+      overflow: visible !important;
+      margin: 0 auto 30px !important;
+      padding: 20px;
+      border: 1px solid #71303a;
+      border-radius: 16px;
+      background: rgba(17, 10, 11, .98);
+      color: #f6f3f3;
+      box-shadow: 0 12px 40px #000b, 0 0 25px #ff142b14;
+      text-align: center;
+      backdrop-filter: none;
+    }
+
     .support-qr {
+      min-height: 145px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      padding: 12px;
+      border: 1px dashed #71303a;
+      border-radius: 12px;
+      background: #090707;
     }
 
     .support-qr-image {
@@ -41,15 +64,99 @@
       width: 100%;
       max-width: 220px;
       height: auto;
-      object-fit: contain;
       border-radius: 8px;
+      background: #fff;
     }
 
-    /* Chave PIX */
+    .support-key {
+      margin-top: 13px;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    .support-key span {
+      display: block;
+      margin-bottom: 5px;
+      color: #a9a0a0;
+      font-size: 11px;
+    }
+
     .support-key code {
       display: block;
+      padding: 9px;
+      border: 1px solid #542126;
+      border-radius: 7px;
+      background: #090707;
+      color: #f6f3f3;
+      font-family: monospace;
+      font-size: 12px;
       overflow-wrap: anywhere;
       user-select: all;
+    }
+
+    .support-copy {
+      width: 100%;
+      min-height: 44px;
+      margin-top: 13px;
+      padding: 11px 9px;
+      border: 1px solid #ff4656;
+      border-radius: 9px;
+      background: linear-gradient(100deg, #ff142b, #b90018);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .support-feedback {
+      min-height: 14px;
+      margin: 8px 0 0;
+      color: #ff5968;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        height: auto;
+        aspect-ratio: 7 / 1;
+        min-height: 0;
+        background-size: 100% 100%;
+      }
+
+      .support-panel {
+        margin-top: 0 !important;
+        margin-bottom: 30px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        height: auto;
+        aspect-ratio: 7 / 1;
+        min-height: 0;
+        background-size: 100% 100%;
+      }
+
+      .support-panel {
+        padding: 16px;
+      }
+
+      .support-heading h2 {
+        font-size: 17px;
+      }
+
+      .support-message {
+        font-size: 11px;
+      }
+
+      .support-qr {
+        min-height: 110px;
+      }
+
+      .support-qr-image {
+        max-width: 220px;
+      }
     }
   </style>
 </head>
@@ -90,6 +197,49 @@
       </div>
     </section>
 
+    <!-- Painel PIX depois do catálogo e antes do aviso -->
+    <aside
+      class="support-panel"
+      id="support-panel"
+      aria-label="Apoie o projeto"
+    >
+      <div class="support-heading">
+        <span class="support-heart">♥</span>
+        <h2>Apoie o projeto</h2>
+      </div>
+
+      <p class="support-message">
+        Este site é totalmente gratuito. Se ele ajudou você,
+        considere contribuir para manter o projeto no ar.
+        Toda ajuda será bem-vinda!
+      </p>
+
+      <div class="support-qr" id="support-qr">
+        <img
+          class="support-qr-image"
+          src="imagens/qrcodepix.jpeg"
+          alt="QR Code PIX para apoiar o CASHMOVIE"
+        >
+      </div>
+
+      <div class="support-key" id="support-key">
+        <span>PIX copia e cola</span>
+        <code id="pix-key">douglasgsia@jim.com</code>
+      </div>
+
+      <button
+        class="support-copy"
+        id="support-copy"
+        type="button"
+      >▣ COPIA E COLA</button>
+
+      <p
+        class="support-feedback"
+        id="support-feedback"
+        aria-live="polite"
+      ></p>
+    </aside>
+
     <section class="notice">
       <span class="notice-icon">!</span>
       <div>
@@ -108,49 +258,6 @@
     <small>Use apenas arquivos que você tem autorização para distribuir.</small>
   </footer>
 
-  <!-- Painel permanente de apoio -->
-  <aside
-    class="support-panel"
-    id="support-panel"
-    aria-label="Apoie o projeto"
-  >
-    <div class="support-heading">
-      <span class="support-heart">♥</span>
-      <h2>Apoie o projeto</h2>
-    </div>
-
-    <p class="support-message">
-      Este site é totalmente gratuito. Se ele ajudou você,
-      considere contribuir para manter o projeto no ar.
-      Toda ajuda será bem-vinda!
-    </p>
-
-    <div class="support-qr" id="support-qr">
-      <img
-        class="support-qr-image"
-        src="imagens/qrcodepix.jpeg"
-        alt="QR Code PIX para apoiar o CASHMOVIE"
-      >
-    </div>
-
-    <div class="support-key" id="support-key">
-      <span>PIX copia e cola</span>
-      <code id="pix-key">douglasgsia@jim.com</code>
-    </div>
-
-    <button
-      class="support-copy"
-      id="support-copy"
-      type="button"
-    >▣ COPIA E COLA</button>
-
-    <p
-      class="support-feedback"
-      id="support-feedback"
-      aria-live="polite"
-    ></p>
-  </aside>
-
   <script src="apps.js"></script>
   <script src="script.js"></script>
 
@@ -161,13 +268,11 @@
     const copyButton = document.getElementById("support-copy");
     const pixKeyElement = document.getElementById("pix-key");
     const feedback = document.getElementById("support-feedback");
+    const qrImage = document.querySelector(".support-qr-image");
 
-    // Garante que o painel comece aberto.
+    // Mantém o painel visível.
     panel.hidden = false;
     pixKeyElement.textContent = PIX_KEY;
-
-    // Impede o botão de reabrir de aparecer.
-    document.getElementById("support-reopen").hidden = true;
 
     // Copia a chave PIX informada.
     copyButton.addEventListener("click", async () => {
@@ -189,20 +294,18 @@
 
         feedback.textContent = copied
           ? "Chave PIX copiada com sucesso!"
-          : "Não foi possível copiar. Selecione e copie a chave PIX exibida.";
+          : "Copie manualmente a chave PIX exibida.";
       }
     });
 
-    // Informa se a imagem do QR Code não carregar.
-    const qrImage = document.querySelector(".support-qr-image");
-
+    // Avisa caso o arquivo de imagem não seja encontrado.
     qrImage.addEventListener("error", () => {
       qrImage.alt = "Não foi possível carregar o QR Code PIX.";
       qrImage.style.display = "none";
 
       const errorMessage = document.createElement("small");
       errorMessage.textContent =
-        "Não foi possível carregar o QR Code. Confira o arquivo imagens/qrcodepix.jpeg.";
+        "Confira se imagens/qrcodepix.jpeg existe no GitHub.";
 
       document.getElementById("support-qr").appendChild(errorMessage);
     });
