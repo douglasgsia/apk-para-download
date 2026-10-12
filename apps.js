@@ -1,10 +1,18 @@
-const apps = [
-  {
-    name: "IBO Revenda",
-    category: "Players",
-    description: "Aplicativo IBO Revenda para Android TV e dispositivos Android.",
-    version: "1.0",
-    icon: "iborevenda.jpg",
-    url: "https://drive.google.com/uc?export=download&id=1iWKcNNwo8zHdQbs9mbi_ThCqAOXYRGq1"
-  }
-];
+/*
+  IMPORTANTE:
+  Cole aqui o conteúdo do seu apps.js original para manter os aplicativos,
+  ícones, categorias, descrições e links de download atuais.
+
+  Formato esperado:
+  window.apps = [
+    {
+      name: "Nome do aplicativo",
+      category: "Streaming",
+      description: "Descrição opcional",
+      icon: "caminho/para/icone.png",
+      url: "https://seu-link-de-download",
+      version: "1.0"
+    }
+  ];
+*/
+window.apps = [];
