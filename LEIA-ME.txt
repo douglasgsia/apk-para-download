@@ -1,0 +1,40 @@
+APK PARA DOWNLOAD — COMO EDITAR E PUBLICAR
+
+ARQUIVOS
+- index.html: estrutura da página.
+- style.css: aparência verde e preta.
+- apps.js: LISTA DOS APLICATIVOS; é o arquivo que você vai editar.
+- script.js: busca, filtros e cartões. Normalmente não precisa editar.
+
+COMO ADICIONAR UM APK
+1. Hospede o arquivo APK em um endereço público que permita download direto.
+2. Abra apps.js em um editor de texto (por exemplo, Bloco de Notas ou VS Code).
+3. Copie um bloco de aplicativo e altere name, category, description, version, icon e url.
+4. Em url, cole o link público direto para o APK. Em icon, você pode colocar um link público para uma imagem ou deixar "".
+5. Salve o arquivo. Para adicionar mais apps, separe os blocos por vírgula.
+6. Não coloque senhas, chaves privadas ou dados pessoais nesse arquivo: tudo nele é público.
+
+PUBLICAR SEM GIT (VERCEL DROP)
+1. Extraia o ZIP no computador para uma pasta chamada apk-para-download.
+2. Acesse https://vercel.com/drop e entre/crie sua conta Vercel.
+3. Arraste a pasta extraída ou o ZIP, se a página aceitar ZIP, para a área indicada.
+4. Siga as instruções, dê um nome ao projeto (por exemplo, apk-para-download) e clique para publicar.
+5. Quando a Vercel terminar, abra o endereço .vercel.app fornecido e teste a busca e os links.
+   Se o envio por pasta/ZIP não estiver disponível para sua conta, crie um repositório no GitHub,
+   envie os quatro arquivos e importe o repositório em https://vercel.com/new.
+
+ATUALIZAR DEPOIS
+- Se publicou pelo método de upload, faça novo deploy com a pasta atualizada.
+- Se publicou conectado ao GitHub, edite apps.js no GitHub e salve/commit; a Vercel fará um novo deploy.
+
+CRIAR CÓDIGO NUMÉRICO DO DOWNLOADER
+1. Publique o site primeiro e copie o endereço público completo, como https://seu-projeto.vercel.app.
+2. No computador ou celular, abra https://go.aftvnews.com/.
+3. Cole o endereço público do seu site no campo e clique em Shorten.
+4. Guarde o código numérico que aparecer e digite-o no Downloader da TV/TV Box.
+
+ATENÇÃO SOBRE O CÓDIGO
+- O encurtador informa que os endereços enviados são públicos.
+- O destino de um código já criado não pode ser editado. Se o endereço do site mudar, você precisará gerar outro código.
+- Um código que aponta para a página inicial abre a central; não baixa automaticamente um APK específico.
+- Use apenas APKs de fontes confiáveis e que você tenha autorização para redistribuir. Avise os visitantes sobre a origem dos arquivos.
