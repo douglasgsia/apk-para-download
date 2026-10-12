@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Banner */
     .hero {
       width: 100%;
       background-position: center;
@@ -18,7 +17,6 @@
       background-size: 100% 100%;
     }
 
-    /* Layout principal */
     .catalog-layout {
       width: min(1600px, 100%);
       margin: 0 auto;
@@ -37,16 +35,16 @@
       padding: 0 0 25px;
     }
 
-    /* Painel de apoio */
+    /* Painel PIX e contato */
     .support-panel {
       display: block !important;
-      position: sticky !important;
-      top: 16px !important;
+      position: static !important;
+      top: auto !important;
       right: auto !important;
       width: 100% !important;
       max-width: none !important;
-      max-height: calc(100vh - 32px) !important;
-      overflow-y: auto;
+      max-height: none !important;
+      overflow: visible !important;
       margin: 0 !important;
       padding: 20px;
       border: 1px solid #71303a;
@@ -88,7 +86,6 @@
       margin: 14px 0;
     }
 
-    /* QR Code PIX */
     .support-qr {
       min-height: 145px;
       display: flex;
@@ -112,7 +109,6 @@
       background: #fff;
     }
 
-    /* Chave PIX */
     .support-key {
       margin-top: 13px;
       text-align: left;
@@ -140,7 +136,6 @@
       user-select: all;
     }
 
-    /* Botão copiar PIX */
     .support-copy {
       width: 100%;
       min-height: 44px;
@@ -167,7 +162,6 @@
       line-height: 1.5;
     }
 
-    /* Separador */
     .contact-divider {
       height: 1px;
       margin: 22px 0;
@@ -179,7 +173,7 @@
       );
     }
 
-    /* Seção para adquirir a lista */
+    /* Seção de aquisição */
     .list-contact {
       padding: 15px;
       border: 1px solid #71303a;
@@ -227,14 +221,10 @@
       line-height: 1.6;
     }
 
-    /* Contato em texto: aparece por padrão somente em TVs detectadas */
+    /* Contato em texto: disponível para TV */
     .whatsapp-tv {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 18px 10px;
+      display: block;
+      padding: 17px 10px;
       border: 1px solid #71303a;
       border-radius: 12px;
       background: #090707;
@@ -244,18 +234,21 @@
     }
 
     .whatsapp-tv strong {
+      display: block;
+      margin-bottom: 10px;
       color: #ff4656;
       font-size: 12px;
       line-height: 1.5;
     }
 
     .whatsapp-tv span {
+      display: block;
       color: #fff;
       font-size: 20px;
       font-weight: 700;
     }
 
-    /* Botão WhatsApp: computador e celular */
+    /* Botão para computador e celular */
     .whatsapp-button {
       display: flex;
       align-items: center;
@@ -322,15 +315,19 @@
       line-height: 1;
     }
 
-    /* Telas grandes */
-    @media (min-width: 1500px) {
-      .catalog-layout {
-        grid-template-columns: minmax(0, 1fr) 340px;
-        gap: 30px;
+    /* TVs e navegadores de TV:
+       mostram o número e escondem o botão clicável */
+    @media (min-width: 901px) {
+      .whatsapp-tv {
+        display: block !important;
+      }
+
+      .whatsapp-button {
+        display: none !important;
       }
     }
 
-    /* Tablets e telas menores */
+    /* Tablets e celulares */
     @media (max-width: 900px) {
       .catalog-layout {
         grid-template-columns: minmax(0, 1fr);
@@ -343,12 +340,17 @@
       }
 
       .support-panel {
-        position: static !important;
         width: min(400px, 100%) !important;
         max-width: 400px !important;
-        max-height: none !important;
-        overflow: visible;
         margin: 0 auto 30px !important;
+      }
+
+      .whatsapp-tv {
+        display: none !important;
+      }
+
+      .whatsapp-button {
+        display: flex !important;
       }
     }
 
@@ -461,33 +463,12 @@
         padding: 15px;
       }
     }
-
-    /*
-      TVs e dispositivos com tela grande e sem ponteiro preciso:
-      mostram o número como texto, sem botão.
-    */
-    @media (min-width: 901px) and (hover: none) and (pointer: coarse) {
-      .support-panel {
-        position: static !important;
-        max-height: none !important;
-        overflow: visible !important;
-      }
-
-      .whatsapp-button {
-        display: none !important;
-      }
-
-      .whatsapp-tv {
-        display: flex;
-      }
-    }
   </style>
 </head>
 
 <body>
   <main id="top">
 
-    <!-- Banner principal -->
     <section
       class="hero"
       aria-label="CASHMOVIE — Central de Downloads"
@@ -502,7 +483,6 @@
 
     <div class="catalog-layout">
 
-      <!-- Catálogo de aplicativos -->
       <section class="catalog" id="apps">
         <label class="search">
           <span class="search-icon" aria-hidden="true"></span>
@@ -534,14 +514,11 @@
         </div>
       </section>
 
-      <!-- Painel lateral: PIX e contato -->
       <aside
         class="support-panel"
         id="support-panel"
         aria-label="Apoio e contato CASHMOVIE"
       >
-
-        <!-- Apoie o projeto -->
         <div class="support-heading">
           <span class="support-heart" aria-hidden="true">♥</span>
           <h2>Apoie o projeto</h2>
@@ -553,7 +530,6 @@
           Toda ajuda será bem-vinda!
         </p>
 
-        <!-- QR Code PIX -->
         <div class="support-qr" id="support-qr">
           <img
             class="support-qr-image"
@@ -562,7 +538,6 @@
           >
         </div>
 
-        <!-- Chave PIX -->
         <div class="support-key" id="support-key">
           <span>PIX copia e cola</span>
           <code id="pix-key">douglasgsia@jim.com</code>
@@ -582,16 +557,12 @@
 
         <div class="contact-divider"></div>
 
-        <!-- Seção de aquisição da lista -->
         <section
           class="list-contact"
           aria-labelledby="list-contact-title"
         >
           <div class="list-contact-heading">
-            <span class="list-contact-icon" aria-hidden="true">
-              🛒
-            </span>
-
+            <span class="list-contact-icon" aria-hidden="true">🛒</span>
             <h2 id="list-contact-title">
               ADQUIRA NOSSA LISTA
               <span>PELO WHATSAPP</span>
@@ -603,13 +574,13 @@
             nossa lista de canais, filmes e séries da CASHMOVIE.
           </p>
 
-          <!-- Versão de TV: contato sem botão -->
+          <!-- Número visível na TV, sem botão -->
           <div class="whatsapp-tv">
             <strong>WHATSAPP PARA ADQUIRIR A LISTA</strong>
             <span>(62) 98411-4810</span>
           </div>
 
-          <!-- Versão de computador e celular: botão clicável -->
+          <!-- Botão clicável em celular e computador pequeno -->
           <a
             class="whatsapp-button"
             href="https://wa.me/5562984114810?text=Ol%C3%A1%2C%20gostaria%20de%20adquirir%20a%20lista%20de%20canais%20%2F%20filmes%20%2F%20series%20da%20CASHMOVIE."
@@ -632,11 +603,9 @@
             <span class="whatsapp-arrow" aria-hidden="true">›</span>
           </a>
         </section>
-
       </aside>
     </div>
 
-    <!-- Aviso de segurança -->
     <section class="notice">
       <span class="notice-icon">!</span>
       <div>
@@ -647,10 +616,8 @@
         </p>
       </div>
     </section>
-
   </main>
 
-  <!-- Rodapé -->
   <footer>
     <a class="footer-brand" href="#top">
       CASH<span>MOVIE</span>
@@ -661,11 +628,9 @@
     </small>
   </footer>
 
-  <!-- Arquivos originais dos aplicativos -->
   <script src="apps.js"></script>
   <script src="script.js"></script>
 
-  <!-- Funcionalidade de copiar PIX -->
   <script>
     const PIX_KEY = "douglasgsia@jim.com";
 
