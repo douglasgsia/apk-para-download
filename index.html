@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Banner responsivo */
+    /* Banner */
     .hero {
       width: 100%;
       background-position: center;
@@ -18,7 +18,7 @@
       background-size: 100% 100%;
     }
 
-    /* Layout: catálogo e painel lateral */
+    /* Layout principal */
     .catalog-layout {
       width: min(1600px, 100%);
       margin: 0 auto;
@@ -27,6 +27,7 @@
       grid-template-columns: minmax(0, 1fr) 310px;
       align-items: start;
       gap: 24px;
+      box-sizing: border-box;
     }
 
     .catalog-layout .catalog {
@@ -36,7 +37,7 @@
       padding: 0 0 25px;
     }
 
-    /* Painel lateral */
+    /* Painel de apoio */
     .support-panel {
       display: block !important;
       position: sticky !important;
@@ -63,7 +64,6 @@
       display: none !important;
     }
 
-    /* Cabeçalho do apoio */
     .support-heading {
       display: flex;
       align-items: center;
@@ -140,7 +140,7 @@
       user-select: all;
     }
 
-    /* Botão PIX */
+    /* Botão copiar PIX */
     .support-copy {
       width: 100%;
       min-height: 44px;
@@ -167,7 +167,7 @@
       line-height: 1.5;
     }
 
-    /* Separador entre PIX e WhatsApp */
+    /* Separador */
     .contact-divider {
       height: 1px;
       margin: 22px 0;
@@ -227,7 +227,35 @@
       line-height: 1.6;
     }
 
-    /* Botão WhatsApp com mensagem predefinida */
+    /* Contato em texto: aparece por padrão somente em TVs detectadas */
+    .whatsapp-tv {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 10px;
+      border: 1px solid #71303a;
+      border-radius: 12px;
+      background: #090707;
+      text-align: center;
+      overflow-wrap: anywhere;
+      box-sizing: border-box;
+    }
+
+    .whatsapp-tv strong {
+      color: #ff4656;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .whatsapp-tv span {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* Botão WhatsApp: computador e celular */
     .whatsapp-button {
       display: flex;
       align-items: center;
@@ -302,7 +330,7 @@
       }
     }
 
-    /* Tablets: painel abaixo do catálogo */
+    /* Tablets e telas menores */
     @media (max-width: 900px) {
       .catalog-layout {
         grid-template-columns: minmax(0, 1fr);
@@ -433,6 +461,26 @@
         padding: 15px;
       }
     }
+
+    /*
+      TVs e dispositivos com tela grande e sem ponteiro preciso:
+      mostram o número como texto, sem botão.
+    */
+    @media (min-width: 901px) and (hover: none) and (pointer: coarse) {
+      .support-panel {
+        position: static !important;
+        max-height: none !important;
+        overflow: visible !important;
+      }
+
+      .whatsapp-button {
+        display: none !important;
+      }
+
+      .whatsapp-tv {
+        display: flex;
+      }
+    }
   </style>
 </head>
 
@@ -452,7 +500,6 @@
       >♥ Apoie o projeto</button>
     </section>
 
-    <!-- Catálogo e painel lateral -->
     <div class="catalog-layout">
 
       <!-- Catálogo de aplicativos -->
@@ -487,7 +534,7 @@
         </div>
       </section>
 
-      <!-- Painel lateral: PIX e WhatsApp -->
+      <!-- Painel lateral: PIX e contato -->
       <aside
         class="support-panel"
         id="support-panel"
@@ -533,10 +580,9 @@
           aria-live="polite"
         ></p>
 
-        <!-- Separação visual -->
         <div class="contact-divider"></div>
 
-        <!-- Adquira a lista pelo WhatsApp -->
+        <!-- Seção de aquisição da lista -->
         <section
           class="list-contact"
           aria-labelledby="list-contact-title"
@@ -557,6 +603,13 @@
             nossa lista de canais, filmes e séries da CASHMOVIE.
           </p>
 
+          <!-- Versão de TV: contato sem botão -->
+          <div class="whatsapp-tv">
+            <strong>WHATSAPP PARA ADQUIRIR A LISTA</strong>
+            <span>(62) 98411-4810</span>
+          </div>
+
+          <!-- Versão de computador e celular: botão clicável -->
           <a
             class="whatsapp-button"
             href="https://wa.me/5562984114810?text=Ol%C3%A1%2C%20gostaria%20de%20adquirir%20a%20lista%20de%20canais%20%2F%20filmes%20%2F%20series%20da%20CASHMOVIE."
@@ -608,11 +661,11 @@
     </small>
   </footer>
 
-  <!-- Arquivos originais do catálogo -->
+  <!-- Arquivos originais dos aplicativos -->
   <script src="apps.js"></script>
   <script src="script.js"></script>
 
-  <!-- Funcionalidade de copiar o PIX -->
+  <!-- Funcionalidade de copiar PIX -->
   <script>
     const PIX_KEY = "douglasgsia@jim.com";
 
