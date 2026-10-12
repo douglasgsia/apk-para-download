@@ -6,6 +6,6 @@ const apps = [
     description: "Aplicativo IBO Revenda para Android TV e dispositivos Android.",
     version: "1.0",
     icon: "iborevenda.jpg",
-    url: "https://drive.google.com/uc?export=download&id=1iWKcNNwo8zHdQbs9mbi_ThCqAOXYRGq1"
+url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/ibo-revenda.apk"
   }
 ];
