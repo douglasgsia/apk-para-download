@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -7,26 +8,93 @@
   <meta name="description" content="CASHMOVIE — Central de Downloads.">
   <title>CASHMOVIE | Central de Downloads</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Painel de apoio sempre visível */
+    .support-panel[hidden] {
+      display: block !important;
+    }
+
+    .support-panel {
+      display: block;
+      position: fixed;
+      z-index: 9999;
+    }
+
+    /* Não exibir controles para fechar ou minimizar */
+    .support-close {
+      display: none !important;
+    }
+
+    /* O QR Code permanece centralizado no painel */
+    .support-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .support-qr-image {
+      display: block;
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* Impede que o botão de reabrir apareça */
+    .support-reopen {
+      display: none !important;
+    }
+  </style>
 </head>
+
 <body>
   <main id="top">
     <section class="hero" aria-label="CASHMOVIE — Central de Downloads">
-      <button class="support-reopen" id="support-reopen" type="button">♥ Apoie o projeto</button>
+      <button
+        class="support-reopen"
+        id="support-reopen"
+        type="button"
+        hidden
+      >♥ Apoie o projeto</button>
     </section>
 
     <section class="catalog" id="apps">
       <label class="search">
         <span class="search-icon" aria-hidden="true"></span>
-        <input id="search" type="search" placeholder="Buscar por nome ou categoria..." autocomplete="off" aria-label="Buscar aplicativos">
+        <input
+          id="search"
+          type="search"
+          placeholder="Buscar por nome ou categoria..."
+          autocomplete="off"
+          aria-label="Buscar aplicativos"
+        >
       </label>
-      <div class="catalog-info"><span id="count" class="count">Carregando aplicativos...</span></div>
+
+      <div class="catalog-info">
+        <span id="count" class="count">Carregando aplicativos...</span>
+      </div>
+
       <div id="app-grid" class="app-grid" aria-live="polite"></div>
-      <div id="empty" class="empty" hidden><span>⌕</span><h3>Nenhum aplicativo encontrado</h3><p>Tente buscar por outro nome.</p></div>
+
+      <div id="empty" class="empty" hidden>
+        <span>⌕</span>
+        <h3>Nenhum aplicativo encontrado</h3>
+        <p>Tente buscar por outro nome.</p>
+      </div>
     </section>
 
     <section class="notice">
       <span class="notice-icon">!</span>
-      <div><h3>Baixe com atenção</h3><p>Instale apenas aplicativos de fontes em que você confia. Confira a origem e as permissões antes de instalar.</p></div>
+      <div>
+        <h3>Baixe com atenção</h3>
+        <p>
+          Instale apenas aplicativos de fontes em que você confia.
+          Confira a origem e as permissões antes de instalar.
+        </p>
+      </div>
     </section>
   </main>
 
@@ -36,59 +104,104 @@
     <small>Use apenas arquivos que você tem autorização para distribuir.</small>
   </footer>
 
-  <aside class="support-panel" id="support-panel" aria-label="Apoie o projeto" hidden>
-    <button class="support-close" id="support-close" type="button" aria-label="Fechar painel">×</button>
-    <div class="support-heading"><span class="support-heart">♥</span><h2>Apoie o projeto</h2></div>
-    <p class="support-message">Este site é totalmente gratuito. Se ele ajudou você, considere contribuir para manter o projeto no ar. Toda ajuda será bem-vinda!</p>
-    <div class="support-qr" id="support-qr"><span class="qr-placeholder">QR CODE PIX</span><small>QR Code será adicionado aqui</small></div>
-    <div class="support-key" id="support-key" hidden><span>PIX copia e cola</span><code id="pix-key"></code></div>
-    <button class="support-copy" id="support-copy" type="button" disabled>▣ COPIA E COLA</button>
-    <p class="support-feedback" id="support-feedback" aria-live="polite"></p>
+  <!-- Painel de apoio permanente -->
+  <aside
+    class="support-panel"
+    id="support-panel"
+    aria-label="Apoie o projeto"
+  >
+    <div class="support-heading">
+      <span class="support-heart">♥</span>
+      <h2>Apoie o projeto</h2>
+    </div>
+
+    <p class="support-message">
+      Este site é totalmente gratuito. Se ele ajudou você,
+      considere contribuir para manter o projeto no ar.
+      Toda ajuda será bem-vinda!
+    </p>
+
+    <div class="support-qr" id="support-qr">
+      <span class="qr-placeholder">QR CODE PIX</span>
+      <small>QR Code será adicionado aqui</small>
+    </div>
+
+    <div class="support-key" id="support-key" hidden>
+      <span>PIX copia e cola</span>
+      <code id="pix-key"></code>
+    </div>
+
+    <button class="support-copy" id="support-copy" type="button" disabled>
+      ▣ COPIA E COLA
+    </button>
+
+    <p
+      class="support-feedback"
+      id="support-feedback"
+      aria-live="polite"
+    ></p>
   </aside>
 
   <script src="apps.js"></script>
   <script src="script.js"></script>
+
   <script>
+    /*
+     * Insira aqui os dados verdadeiros do PIX.
+     * PIX_KEY: código PIX copia e cola fornecido pelo banco.
+     * QR_IMAGE: caminho ou URL da imagem real do QR Code.
+     */
     const PIX_KEY = "";
     const QR_IMAGE = "";
+
     const panel = document.getElementById("support-panel");
-    const reopen = document.getElementById("support-reopen");
     const copyButton = document.getElementById("support-copy");
     const pixKeyElement = document.getElementById("pix-key");
     const keyContainer = document.getElementById("support-key");
     const qrContainer = document.getElementById("support-qr");
     const feedback = document.getElementById("support-feedback");
 
-    reopen.addEventListener("click", event => {
-      event.preventDefault();
-      panel.hidden = false;
-      reopen.hidden = true;
-    });
+    // Mantém o painel visível e elimina o estado oculto.
+    panel.hidden = false;
+    document.getElementById("support-reopen").hidden = true;
 
     if (PIX_KEY.trim()) {
       pixKeyElement.textContent = PIX_KEY.trim();
       keyContainer.hidden = false;
       copyButton.disabled = false;
     }
+
     if (QR_IMAGE.trim()) {
-      qrContainer.replaceChildren();
       const image = document.createElement("img");
       image.className = "support-qr-image";
       image.src = QR_IMAGE.trim();
       image.alt = "QR Code PIX para apoiar o projeto";
-      qrContainer.appendChild(image);
+
+      image.onerror = () => {
+        qrContainer.replaceChildren();
+
+        const placeholder = document.createElement("span");
+        placeholder.className = "qr-placeholder";
+        placeholder.textContent = "QR CODE PIX";
+
+        const message = document.createElement("small");
+        message.textContent = "Não foi possível carregar a imagem do QR Code.";
+
+        qrContainer.append(placeholder, message);
+      };
+
+      qrContainer.replaceChildren(image);
     }
-    document.getElementById("support-close").addEventListener("click", () => {
-      panel.hidden = true;
-      reopen.hidden = false;
-    });
+
     copyButton.addEventListener("click", async () => {
       if (!PIX_KEY.trim()) return;
+
       try {
         await navigator.clipboard.writeText(PIX_KEY.trim());
         feedback.textContent = "Código PIX copiado!";
       } catch {
-        feedback.textContent = "Não foi possível copiar automaticamente. Selecione e copie a chave PIX.";
+        feedback.textContent =
+          "Não foi possível copiar automaticamente. Selecione e copie a chave PIX.";
       }
     });
   </script>
