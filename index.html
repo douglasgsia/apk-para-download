@@ -1,48 +1,103 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a0f0c"><meta name="description" content="APK para download — central de aplicativos Android.">
-  <title>APK para download | Central de aplicativos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d0b">
+  <meta name="description" content="Central de aplicativos para Android, TV Box e Android TV.">
+  <title>Central de Downloads</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar"><a class="brand" href="#top" aria-label="APK para download - início"><span class="brand-mark">APK</span><span>APK <b>PARA DOWNLOAD</b><small>Central de aplicativos</small></span></a><a class="header-link" href="#apps">Ver aplicativos <span>↘</span></a></header>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Início">
+      <span class="brand-mark">APK</span>
+      <span>APK <b>PARA DOWNLOAD</b><small>Central de aplicativos</small></span>
+    </a>
+    <a class="header-link" href="#apps">Ver aplicativos <span>↘</span></a>
+  </header>
+
   <main id="top">
-    <section class="hero"><div class="eyebrow"><span class="pulse"></span> CENTRAL DE DOWNLOADS</div><h1>Seus aplicativos.<br><span>Em um só lugar.</span></h1><p>Encontre seus apps para Android, TV Box e Android TV com praticidade.</p><a class="hero-button" href="#apps">Explorar aplicativos <span>↓</span></a><div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div></section>
-    <section class="catalog" id="apps"><div class="section-heading"><div><div class="eyebrow">BIBLIOTECA</div><h2>Central de aplicativos</h2></div><span id="count" class="count">0 aplicativos</span></div>
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> CENTRAL DE DOWNLOADS</div>
+      <h1>Seus aplicativos.<br><span>Em um só lugar.</span></h1>
+      <p>Encontre seus apps para Android, TV Box e Android TV com praticidade.</p>
+      <a class="hero-button" href="#apps">Explorar aplicativos <span>↓</span></a>
+      <div class="hero-orb orb-one"></div>
+      <div class="hero-orb orb-two"></div>
+    </section>
+
+    <section class="catalog" id="apps">
+      <div class="section-heading">
+        <div><div class="eyebrow">BIBLIOTECA</div><h2>Central de aplicativos</h2></div>
+        <span id="count" class="count">0 aplicativos</span>
+      </div>
       <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar por nome ou categoria..." autocomplete="off"><kbd>BUSCAR</kbd></label>
       <nav id="categories" class="categories" aria-label="Filtrar por categoria"></nav>
       <div id="app-grid" class="app-grid" aria-live="polite"></div>
       <div id="empty" class="empty" hidden><span>⌕</span><h3>Nenhum aplicativo encontrado</h3><p>Tente outro nome ou escolha uma categoria diferente.</p></div>
     </section>
+
     <section class="notice"><span class="notice-icon">✓</span><div><h3>Baixe com atenção</h3><p>Instale apenas aplicativos de fontes em que você confia. Confira a origem e as permissões antes de instalar.</p></div></section>
   </main>
+
   <footer><a class="footer-brand" href="#top">APK <span>PARA DOWNLOAD</span></a><p>Central independente de links para aplicativos Android.</p><small>Use apenas arquivos que você tem autorização para distribuir.</small></footer>
+
   <aside class="support-panel" id="support-panel" aria-label="Apoie o projeto">
-    <button class="support-close" id="support-close" type="button" aria-label="Fechar">×</button>
-    <h2 class="support-heading">Apoie o projeto</h2>
-    <p class="support-copytext">Se este projeto é útil para você, considere contribuir para ajudar a mantê-lo.</p>
-    <div class="support-qr" id="support-qr">O QR Code PIX será exibido aqui.</div>
-    <div class="support-key" id="support-key" hidden></div>
-    <button class="support-copy" id="support-copy" type="button" disabled>COPIA E COLA PIX</button>
+    <button class="support-close" id="support-close" type="button" aria-label="Fechar painel">×</button>
+    <div class="support-heading"><span class="support-heart">♥</span><h2>Apoie o projeto</h2></div>
+    <p class="support-message">Este site é totalmente gratuito. Se ele ajudou você, considere contribuir para manter o projeto no ar. Toda ajuda será bem-vinda!</p>
+    <div class="support-qr" id="support-qr"><span class="qr-placeholder">QR CODE PIX</span><small>QR Code será adicionado aqui</small></div>
+    <div class="support-key" id="support-key" hidden><span>PIX copia e cola</span><code id="pix-key"></code></div>
+    <button class="support-copy" id="support-copy" type="button" disabled><span>▣</span> COPIA E COLA</button>
+    <p class="support-feedback" id="support-feedback" aria-live="polite"></p>
   </aside>
-  <button class="support-reopen" id="support-reopen" type="button" hidden>Apoie o projeto</button>
+  <button class="support-reopen" id="support-reopen" type="button" hidden>♥ Apoie o projeto</button>
+
+  <script src="apps.js"></script>
+  <script src="script.js"></script>
   <script>
-    // Quando tiver os dados, preencha a chave PIX e/ou o endereço da imagem do QR Code.
     const PIX_KEY = "";
     const QR_IMAGE = "";
-    const supportPanel = document.getElementById('support-panel');
-    const supportReopen = document.getElementById('support-reopen');
-    const supportKey = document.getElementById('support-key');
-    const supportQr = document.getElementById('support-qr');
-    const supportCopy = document.getElementById('support-copy');
-    if (QR_IMAGE) supportQr.innerHTML = `<img src="${QR_IMAGE}" alt="QR Code PIX">`;
-    if (PIX_KEY) { supportKey.hidden = false; supportKey.textContent = 'PIX: ' + PIX_KEY; supportCopy.disabled = false; }
-    document.getElementById('support-close').addEventListener('click', () => { supportPanel.hidden = true; supportReopen.hidden = false; });
-    supportReopen.addEventListener('click', () => { supportPanel.hidden = false; supportReopen.hidden = true; });
-    supportCopy.addEventListener('click', async () => { if (!PIX_KEY) return; try { await navigator.clipboard.writeText(PIX_KEY); supportCopy.textContent = 'PIX COPIADO!'; } catch { supportCopy.textContent = 'COPIE A CHAVE MANUALMENTE'; } });
+    const panel = document.getElementById("support-panel");
+    const reopen = document.getElementById("support-reopen");
+    const copyButton = document.getElementById("support-copy");
+    const pixKeyElement = document.getElementById("pix-key");
+    const keyContainer = document.getElementById("support-key");
+    const qrContainer = document.getElementById("support-qr");
+    const feedback = document.getElementById("support-feedback");
+
+    if (PIX_KEY.trim()) {
+      pixKeyElement.textContent = PIX_KEY.trim();
+      keyContainer.hidden = false;
+      copyButton.disabled = false;
+    }
+    if (QR_IMAGE.trim()) {
+      qrContainer.innerHTML = "";
+      const image = document.createElement("img");
+      image.className = "support-qr-image";
+      image.src = QR_IMAGE.trim();
+      image.alt = "QR Code PIX para apoiar o projeto";
+      qrContainer.appendChild(image);
+    }
+
+    document.getElementById("support-close").addEventListener("click", () => {
+      panel.hidden = true;
+      reopen.hidden = false;
+    });
+    reopen.addEventListener("click", () => {
+      panel.hidden = false;
+      reopen.hidden = true;
+    });
+    copyButton.addEventListener("click", async () => {
+      if (!PIX_KEY.trim()) return;
+      try {
+        await navigator.clipboard.writeText(PIX_KEY.trim());
+        feedback.textContent = "Código PIX copiado!";
+      } catch {
+        feedback.textContent = "Não foi possível copiar automaticamente. Selecione e copie a chave PIX.";
+      }
+    });
   </script>
-  <script src="apps.js"></script><script src="script.js"></script>
 </body>
 </html>
