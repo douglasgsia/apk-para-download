@@ -1,4 +1,5 @@
-const apps = [
+
+window.apps = [
   {
     name: "IBO Revenda",
     category: "Players",
@@ -18,7 +19,7 @@ const apps = [
   {
     name: "Downloader",
     category: "Ferramentas",
-    description: "Aplicativo Downloader para dispositivos Android.",
+    description: "Aplicativo Downloader para Android.",
     version: "1.0",
     icon: "imagens/downloader.png",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/Downloader.apk"
@@ -26,7 +27,7 @@ const apps = [
   {
     name: "All Play Plus",
     category: "Players",
-    description: "Aplicativo All Play Plus para dispositivos compatíveis.",
+    description: "Aplicativo All Play Plus.",
     version: "1.0",
     icon: "imagens/allplayplus.jpg",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/All.Play.Plus.apk"
@@ -34,7 +35,7 @@ const apps = [
   {
     name: "VU Revenda",
     category: "Players",
-    description: "Aplicativo VU Revenda para dispositivos compatíveis.",
+    description: "Aplicativo VU Revenda.",
     version: "1.0",
     icon: "imagens/vurevenda.jpg",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/VU.REVENDA.apk"
@@ -42,7 +43,7 @@ const apps = [
   {
     name: "RX Purple",
     category: "Players",
-    description: "Aplicativo RX Purple para dispositivos compatíveis.",
+    description: "Aplicativo RX Purple.",
     version: "1.0",
     icon: "imagens/rxpurple.jpg",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/RX.PURPLE.apk"
@@ -50,7 +51,7 @@ const apps = [
   {
     name: "Max Player",
     category: "Players",
-    description: "Aplicativo Max Player para dispositivos compatíveis.",
+    description: "Aplicativo Max Player.",
     version: "1.0",
     icon: "imagens/maxplayer.jpg",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/Max.Player.apk"
@@ -58,7 +59,7 @@ const apps = [
   {
     name: "IBO New",
     category: "Players",
-    description: "Aplicativo IBO New para dispositivos compatíveis.",
+    description: "Aplicativo IBO New.",
     version: "1.0",
     icon: "imagens/ibonew.jpg",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/IBO.New.apk"
