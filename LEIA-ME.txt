@@ -1,15 +1,9 @@
-CASHMOVIE — arquivos do site
+CASHMOVIE — arquivos atualizados
 
-Arquivos:
-- index.html: estrutura da página
-- style.css: visual preto/vermelho
-- script.js: pesquisa e cartões dos aplicativos
-- apps.js: lista de aplicativos
+O banner-cashmovie.jpg é um recorte da imagem de referência enviada, usado como banner do topo.
+Arquivos: index.html, style.css, script.js, apps.js e banner-cashmovie.jpg.
 
-IMPORTANTE:
-O apps.js incluído é apenas um arquivo inicial vazio, pois a lista original de aplicativos
-não foi fornecida nesta etapa. Para manter os aplicativos e links reais, substitua o apps.js
-pelo arquivo original do seu site.
+O apps.js restaura o aplicativo real identificado nos arquivos anteriores: IBO Revenda.
+Os demais apps/ícones/links que existiam na versão publicada não estavam presentes nos arquivos recebidos; para restaurar a lista completa original, será necessário recuperar o apps.js original do repositório.
 
-Para personalizar o apoio PIX:
-No index.html, preencha PIX_KEY e QR_IMAGE.
+PIX_KEY e QR_IMAGE continuam vazios no index.html até serem preenchidos.
