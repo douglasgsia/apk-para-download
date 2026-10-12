@@ -21,7 +21,7 @@ window.apps = [
     category: "Players",
     description: "Aplicativo IBO New para TV e dispositivos Android compatíveis.",
     version: "APK para TV",
-    icon: "[https://github.com/douglasgsia/apk-para-download/blob/main/imagens/ibonew.jpg](https://github.com/douglasgsia/apk-para-download/blob/main/imagens/ibonew.jpg)",
-    url: "[https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/IboNew.apk](https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/IboNew.apk)"
+    icon: "https://raw.githubusercontent.com/douglasgsia/apk-para-download/main/imagens/ibonew.jpg",
+    url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/IboNew.apk"
   }
 ];
