@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -9,56 +10,143 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Início">
-      <span class="brand-mark">APK</span>
-      <span>APK <b>PARA DOWNLOAD</b><small>Central de aplicativos</small></span>
-    </a>
-    <a class="header-link" href="#apps">Ver aplicativos <span>↘</span></a>
-  </header>
 
   <main id="top">
     <section class="hero">
-      <div class="eyebrow"><span class="pulse"></span> CENTRAL DE DOWNLOADS</div>
+      <div class="eyebrow">
+        <span class="pulse"></span>
+        CENTRAL DE DOWNLOADS
+      </div>
+
       <h1>Seus aplicativos.<br><span>Em um só lugar.</span></h1>
+
       <p>Encontre seus apps para Android, TV Box e Android TV com praticidade.</p>
-      <a class="hero-button" href="#apps">Explorar aplicativos <span>↓</span></a>
+
+      <a class="hero-button" href="#apps">
+        Explorar aplicativos <span>↓</span>
+      </a>
+
       <div class="hero-orb orb-one"></div>
       <div class="hero-orb orb-two"></div>
     </section>
 
     <section class="catalog" id="apps">
       <div class="section-heading">
-        <div><div class="eyebrow">BIBLIOTECA</div><h2>Central de aplicativos</h2></div>
+        <div>
+          <div class="eyebrow">BIBLIOTECA</div>
+          <h2>Central de aplicativos</h2>
+        </div>
         <span id="count" class="count">0 aplicativos</span>
       </div>
-      <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar por nome ou categoria..." autocomplete="off"><kbd>BUSCAR</kbd></label>
-      <nav id="categories" class="categories" aria-label="Filtrar por categoria"></nav>
+
+      <label class="search">
+        <span aria-hidden="true">⌕</span>
+        <input
+          id="search"
+          type="search"
+          placeholder="Buscar por nome ou categoria..."
+          autocomplete="off"
+        >
+        <kbd>BUSCAR</kbd>
+      </label>
+
+      <nav
+        id="categories"
+        class="categories"
+        aria-label="Filtrar por categoria"
+      ></nav>
+
       <div id="app-grid" class="app-grid" aria-live="polite"></div>
-      <div id="empty" class="empty" hidden><span>⌕</span><h3>Nenhum aplicativo encontrado</h3><p>Tente outro nome ou escolha uma categoria diferente.</p></div>
+
+      <div id="empty" class="empty" hidden>
+        <span>⌕</span>
+        <h3>Nenhum aplicativo encontrado</h3>
+        <p>Tente outro nome ou escolha uma categoria diferente.</p>
+      </div>
     </section>
 
-    <section class="notice"><span class="notice-icon">✓</span><div><h3>Baixe com atenção</h3><p>Instale apenas aplicativos de fontes em que você confia. Confira a origem e as permissões antes de instalar.</p></div></section>
+    <section class="notice">
+      <span class="notice-icon">✓</span>
+      <div>
+        <h3>Baixe com atenção</h3>
+        <p>
+          Instale apenas aplicativos de fontes em que você confia.
+          Confira a origem e as permissões antes de instalar.
+        </p>
+      </div>
+    </section>
   </main>
 
-  <footer><a class="footer-brand" href="#top">APK <span>PARA DOWNLOAD</span></a><p>Central independente de links para aplicativos Android.</p><small>Use apenas arquivos que você tem autorização para distribuir.</small></footer>
+  <footer>
+    <a class="footer-brand" href="#top">
+      APK <span>PARA DOWNLOAD</span>
+    </a>
+    <p>Central independente de links para aplicativos Android.</p>
+    <small>Use apenas arquivos que você tem autorização para distribuir.</small>
+  </footer>
 
+  <!-- PAINEL DE APOIO PIX -->
   <aside class="support-panel" id="support-panel" aria-label="Apoie o projeto">
-    <button class="support-close" id="support-close" type="button" aria-label="Fechar painel">×</button>
-    <div class="support-heading"><span class="support-heart">♥</span><h2>Apoie o projeto</h2></div>
-    <p class="support-message">Este site é totalmente gratuito. Se ele ajudou você, considere contribuir para manter o projeto no ar. Toda ajuda será bem-vinda!</p>
-    <div class="support-qr" id="support-qr"><span class="qr-placeholder">QR CODE PIX</span><small>QR Code será adicionado aqui</small></div>
-    <div class="support-key" id="support-key" hidden><span>PIX copia e cola</span><code id="pix-key"></code></div>
-    <button class="support-copy" id="support-copy" type="button" disabled><span>▣</span> COPIA E COLA</button>
-    <p class="support-feedback" id="support-feedback" aria-live="polite"></p>
+
+    <button
+      class="support-close"
+      id="support-close"
+      type="button"
+      aria-label="Fechar painel"
+    >×</button>
+
+    <div class="support-heading">
+      <span class="support-heart">♥</span>
+      <h2>Apoie o projeto</h2>
+    </div>
+
+    <p class="support-message">
+      Este site é totalmente gratuito. Se ele ajudou você,
+      considere contribuir para manter o projeto no ar.
+      Toda ajuda será bem-vinda!
+    </p>
+
+    <div class="support-qr" id="support-qr">
+      <span class="qr-placeholder">QR CODE PIX</span>
+      <small>QR Code será adicionado aqui</small>
+    </div>
+
+    <div class="support-key" id="support-key" hidden>
+      <span>PIX copia e cola</span>
+      <code id="pix-key"></code>
+    </div>
+
+    <button
+      class="support-copy"
+      id="support-copy"
+      type="button"
+      disabled
+    >
+      <span>▣</span> COPIA E COLA
+    </button>
+
+    <p
+      class="support-feedback"
+      id="support-feedback"
+      aria-live="polite"
+    ></p>
   </aside>
-  <button class="support-reopen" id="support-reopen" type="button" hidden>♥ Apoie o projeto</button>
+
+  <button
+    class="support-reopen"
+    id="support-reopen"
+    type="button"
+    hidden
+  >♥ Apoie o projeto</button>
 
   <script src="apps.js"></script>
   <script src="script.js"></script>
+
   <script>
+    // Preencha estes campos quando tiver os dados do PIX.
     const PIX_KEY = "";
     const QR_IMAGE = "";
+
     const panel = document.getElementById("support-panel");
     const reopen = document.getElementById("support-reopen");
     const copyButton = document.getElementById("support-copy");
@@ -72,12 +160,15 @@
       keyContainer.hidden = false;
       copyButton.disabled = false;
     }
+
     if (QR_IMAGE.trim()) {
       qrContainer.innerHTML = "";
+
       const image = document.createElement("img");
       image.className = "support-qr-image";
       image.src = QR_IMAGE.trim();
       image.alt = "QR Code PIX para apoiar o projeto";
+
       qrContainer.appendChild(image);
     }
 
@@ -85,19 +176,24 @@
       panel.hidden = true;
       reopen.hidden = false;
     });
+
     reopen.addEventListener("click", () => {
       panel.hidden = false;
       reopen.hidden = true;
     });
+
     copyButton.addEventListener("click", async () => {
       if (!PIX_KEY.trim()) return;
+
       try {
         await navigator.clipboard.writeText(PIX_KEY.trim());
         feedback.textContent = "Código PIX copiado!";
       } catch {
-        feedback.textContent = "Não foi possível copiar automaticamente. Selecione e copie a chave PIX.";
+        feedback.textContent =
+          "Não foi possível copiar automaticamente. Selecione e copie a chave PIX.";
       }
     });
   </script>
+
 </body>
 </html>
