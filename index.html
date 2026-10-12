@@ -3,23 +3,64 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#080707">
   <meta name="description" content="CASHMOVIE — Central de Downloads.">
   <title>CASHMOVIE | Central de Downloads</title>
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ESTRUTURA: APLICATIVOS À ESQUERDA, APOIO À DIREITA */
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      overflow-x: clip;
+    }
+
+    body {
+      background: #070707;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    /* BANNER: NÃO SOBREPOR OS TEXTOS QUE JÁ EXISTEM NA IMAGEM */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 0 !important;
+      height: auto !important;
+      aspect-ratio: 6.4 / 1;
+      overflow: hidden;
+      background-position: center !important;
+      background-size: 100% 100% !important;
+      background-repeat: no-repeat !important;
+    }
+
+    .hero-inner,
+    .hero-copy,
+    .hero .cinema-logo {
+      display: none !important;
+    }
+
+    .hero::before,
+    .hero::after {
+      pointer-events: none;
+    }
+
+    /* CONTEÚDO: CATÁLOGO À ESQUERDA E PAINEL À DIREITA */
     .content-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 310px;
+      grid-template-columns: minmax(0, 1fr) 300px;
       align-items: start;
-      gap: 24px;
-      width: min(1500px, 100%);
+      gap: 22px;
+      width: 100%;
+      max-width: 1500px;
       margin: 0 auto;
-      padding: 24px;
-      box-sizing: border-box;
+      padding: 22px 24px 30px;
     }
 
     .main-content {
@@ -30,27 +71,31 @@
       width: 100%;
       max-width: none;
       margin: 0;
-      padding: 0 0 32px;
+      padding: 0 0 30px;
+    }
+
+    .main-content .search {
+      width: min(680px, 100%);
     }
 
     .main-content .notice {
       width: 100%;
-      margin: 0 0 25px;
-      box-sizing: border-box;
+      margin: 0;
     }
 
-    /* PAINEL LATERAL SEM MINIMIZAR */
+    /* PAINEL PERMANENTE: SEM X, SEM BOTÃO DE REABRIR */
     .support-panel {
       display: block !important;
       position: relative !important;
       inset: auto !important;
-      align-self: start;
+      float: none !important;
       width: 100% !important;
+      min-width: 0;
       max-width: none !important;
       height: auto !important;
       max-height: none !important;
       margin: 0 !important;
-      padding: 20px !important;
+      padding: 18px !important;
       overflow: visible !important;
       box-sizing: border-box;
       border: 1px solid #71303a;
@@ -59,6 +104,7 @@
       color: #f6f3f3;
       text-align: center;
       box-shadow: 0 8px 25px #0005;
+      z-index: 1;
     }
 
     .support-close,
@@ -71,6 +117,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      padding: 0;
     }
 
     .support-heading h2 {
@@ -79,6 +126,7 @@
     }
 
     .support-message {
+      margin: 12px 0 16px;
       color: #bdb3b3;
       font-size: 12px;
       line-height: 1.6;
@@ -86,14 +134,13 @@
 
     .support-qr {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       min-height: 150px;
       padding: 12px;
       border: 1px dashed #71303a;
       border-radius: 10px;
       background: #090707;
-      box-sizing: border-box;
     }
 
     .support-qr-image {
@@ -101,6 +148,7 @@
       width: 100%;
       max-width: 190px;
       height: auto;
+      object-fit: contain;
       border-radius: 6px;
       background: #fff;
     }
@@ -120,15 +168,17 @@
     .support-key code {
       display: block;
       padding: 10px;
-      overflow-wrap: anywhere;
       border: 1px solid #542126;
       border-radius: 7px;
       background: #090707;
       color: #fff;
       font-size: 11px;
+      overflow-wrap: anywhere;
+      user-select: text;
     }
 
     .support-copy {
+      display: block;
       width: 100%;
       min-height: 42px;
       margin-top: 12px;
@@ -142,6 +192,7 @@
 
     .support-feedback {
       min-height: 14px;
+      margin: 8px 0 0;
       color: #ff5968;
       font-size: 10px;
     }
@@ -150,8 +201,7 @@
     .whatsapp-section {
       width: 100%;
       margin-top: 20px;
-      padding: 16px;
-      box-sizing: border-box;
+      padding: 15px;
       border: 1px solid #352323;
       border-radius: 12px;
       background: #151313;
@@ -171,7 +221,7 @@
     }
 
     .whatsapp-description {
-      margin: 0 0 16px;
+      margin: 0 0 15px;
       color: #bdb3b3;
       font-size: 12px;
       line-height: 1.6;
@@ -184,9 +234,9 @@
       justify-content: center;
       gap: 10px;
       width: 100%;
-      min-height: 65px;
+      min-height: 62px;
       padding: 12px;
-      box-sizing: border-box;
+      border: 0;
       border-radius: 9px;
       background: #25D366;
       color: #fff !important;
@@ -196,7 +246,6 @@
       font-weight: 800;
       line-height: 1.4;
       overflow-wrap: anywhere;
-      transition: background .2s ease;
     }
 
     .whatsapp-button:hover {
@@ -219,55 +268,23 @@
       font-size: 10px;
     }
 
-    /* BANNER: MELHOR CONTRASTE PARA O TEXTO */
-    .hero {
-      isolation: isolate;
-    }
-
-    .hero:before {
-      z-index: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,.88) 0%,
-          rgba(0,0,0,.70) 42%,
-          rgba(0,0,0,.12) 100%
-        ),
-        linear-gradient(
-          0deg,
-          rgba(0,0,0,.38),
-          rgba(0,0,0,.12)
-        );
-      opacity: 1;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-copy {
-      padding: 12px 0;
-      text-shadow: 0 2px 8px #000, 0 0 18px #000;
-    }
-
-    .hero h1 {
-      color: #fff;
-      text-shadow: 0 2px 8px #000, 0 0 18px #000;
-    }
-
-    .hero h1 span {
-      color: #ff263c;
-      text-shadow: 0 2px 8px #000, 0 0 18px #000;
-    }
-
-    /* TELAS MENORES: CONTEÚDO EMPILHADO SEM SOBREPOSIÇÃO */
+    /* TABLETS E CELULARES */
     @media (max-width: 900px) {
+      .hero {
+        aspect-ratio: 6.4 / 1;
+        min-height: 0 !important;
+        height: auto !important;
+        background-size: 100% 100% !important;
+      }
+
       .content-layout {
         grid-template-columns: minmax(0, 1fr);
         gap: 22px;
-        padding: 20px 16px;
+        padding: 20px 16px 28px;
+      }
+
+      .main-content .catalog {
+        padding-bottom: 24px;
       }
 
       .support-panel {
@@ -275,37 +292,27 @@
         max-width: 600px !important;
         margin: 0 auto !important;
       }
-
-      .main-content .catalog {
-        padding-bottom: 25px;
-      }
-
-      .hero:before {
-        background:
-          linear-gradient(
-            90deg,
-            rgba(0,0,0,.88),
-            rgba(0,0,0,.55)
-          ),
-          linear-gradient(
-            0deg,
-            rgba(0,0,0,.25),
-            rgba(0,0,0,.25)
-          );
-      }
     }
 
     @media (max-width: 480px) {
+      .hero {
+        aspect-ratio: 6.4 / 1;
+      }
+
       .content-layout {
-        padding: 18px 12px;
+        padding: 16px 12px 24px;
       }
 
       .support-panel {
-        padding: 16px !important;
+        padding: 15px !important;
       }
 
       .whatsapp-section {
-        padding: 13px;
+        padding: 12px;
+      }
+
+      .whatsapp-button {
+        font-size: 14px;
       }
     }
   </style>
@@ -313,28 +320,9 @@
 
 <body>
   <main id="top">
-    <!-- BANNER ORIGINAL NO TOPO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <div class="eyebrow">
-            <span class="pulse"></span>
-            CENTRAL DE DOWNLOADS
-          </div>
+    <!-- BANNER ORIGINAL: SEM TEXTOS HTML DUPLICADOS -->
+    <section class="hero" aria-label="CASHMOVIE"></section>
 
-          <h1>
-            Seus aplicativos.<br>
-            <span>Em um só lugar.</span>
-          </h1>
-        </div>
-
-        <a class="cinema-logo" href="#top" aria-label="CASHMOVIE">
-          <span>CASH</span><span class="logo-red">MOVIE</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- COLUNA DE APLICATIVOS + PAINEL LATERAL -->
     <div class="content-layout">
       <div class="main-content">
         <section class="catalog" id="apps">
@@ -374,12 +362,8 @@
         </section>
       </div>
 
-      <!-- PAINEL FIXO: SEM X E SEM MINIMIZAR -->
-      <aside
-        class="support-panel"
-        id="support-panel"
-        aria-label="Apoie o projeto e contato"
-      >
+      <!-- PIX E WHATSAPP SEMPRE VISÍVEIS AO LADO NO COMPUTADOR -->
+      <aside class="support-panel" id="support-panel" aria-label="Apoie e contato">
         <div class="support-heading">
           <span class="support-heart">♥</span>
           <h2>Apoie o projeto</h2>
@@ -408,11 +392,7 @@
           ▣ COPIA E COLA
         </button>
 
-        <p
-          class="support-feedback"
-          id="support-feedback"
-          aria-live="polite"
-        ></p>
+        <p class="support-feedback" id="support-feedback" aria-live="polite"></p>
 
         <section class="whatsapp-section" id="whatsapp-contact">
           <h2 class="whatsapp-heading">
