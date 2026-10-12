@@ -18,7 +18,7 @@
       background-size: 100% 100%;
     }
 
-    /* Layout principal: catálogo e apoio lado a lado */
+    /* Layout: catálogo e painel lateral */
     .catalog-layout {
       width: min(1600px, 100%);
       margin: 0 auto;
@@ -36,7 +36,7 @@
       padding: 0 0 25px;
     }
 
-    /* Painel de apoio no lado direito */
+    /* Painel lateral */
     .support-panel {
       display: block !important;
       position: sticky !important;
@@ -55,14 +55,40 @@
       box-shadow: 0 12px 40px #000b, 0 0 25px #ff142b14;
       text-align: center;
       backdrop-filter: blur(12px);
+      box-sizing: border-box;
     }
 
-    /* O painel não pode ser fechado */
     .support-close,
     .support-reopen {
       display: none !important;
     }
 
+    /* Cabeçalho do apoio */
+    .support-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .support-heart {
+      color: #ff1738;
+      font-size: 25px;
+    }
+
+    .support-heading h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .support-message {
+      color: #aaa0a0;
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 14px 0;
+    }
+
+    /* QR Code PIX */
     .support-qr {
       min-height: 145px;
       display: flex;
@@ -74,6 +100,7 @@
       border: 1px dashed #71303a;
       border-radius: 12px;
       background: #090707;
+      box-sizing: border-box;
     }
 
     .support-qr-image {
@@ -85,6 +112,7 @@
       background: #fff;
     }
 
+    /* Chave PIX */
     .support-key {
       margin-top: 13px;
       text-align: left;
@@ -112,6 +140,7 @@
       user-select: all;
     }
 
+    /* Botão PIX */
     .support-copy {
       width: 100%;
       min-height: 44px;
@@ -138,7 +167,134 @@
       line-height: 1.5;
     }
 
-    /* TVs e notebooks com telas grandes */
+    /* Separador entre PIX e WhatsApp */
+    .contact-divider {
+      height: 1px;
+      margin: 22px 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #71303a,
+        transparent
+      );
+    }
+
+    /* Seção para adquirir a lista */
+    .list-contact {
+      padding: 15px;
+      border: 1px solid #71303a;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #100d0d, #080707);
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    .list-contact-heading {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .list-contact-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #310b12;
+      color: #ff1738;
+      font-size: 27px;
+    }
+
+    .list-contact-heading h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .list-contact-heading h2 span {
+      display: block;
+      color: #ff1738;
+    }
+
+    .list-contact p {
+      margin: 12px 0 15px;
+      color: #aaa0a0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* Botão WhatsApp com mensagem predefinida */
+    .whatsapp-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      width: 100%;
+      min-height: 76px;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 1px solid #20ed72;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #00c853, #008f3b);
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 4px 16px #00c85322;
+      transition: transform .2s, filter .2s;
+    }
+
+    .whatsapp-button:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    .whatsapp-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 35px;
+      width: 35px;
+      height: 35px;
+    }
+
+    .whatsapp-icon svg {
+      width: 34px;
+      height: 34px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .whatsapp-button-text {
+      display: flex;
+      flex: 1;
+      min-width: 0;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .whatsapp-button-text strong {
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .whatsapp-button-text small {
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .whatsapp-arrow {
+      font-size: 29px;
+      line-height: 1;
+    }
+
+    /* Telas grandes */
     @media (min-width: 1500px) {
       .catalog-layout {
         grid-template-columns: minmax(0, 1fr) 340px;
@@ -146,7 +302,7 @@
       }
     }
 
-    /* Tablets e telas menores: painel abaixo do catálogo */
+    /* Tablets: painel abaixo do catálogo */
     @media (max-width: 900px) {
       .catalog-layout {
         grid-template-columns: minmax(0, 1fr);
@@ -246,6 +402,31 @@
         max-width: 220px;
       }
 
+      .list-contact {
+        padding: 12px;
+      }
+
+      .list-contact-heading h2 {
+        font-size: 14px;
+      }
+
+      .list-contact p {
+        font-size: 12px;
+      }
+
+      .whatsapp-button {
+        padding: 10px;
+        gap: 7px;
+      }
+
+      .whatsapp-button-text strong {
+        font-size: 14px;
+      }
+
+      .whatsapp-button-text small {
+        font-size: 8px;
+      }
+
       .notice {
         width: calc(100% - 24px);
         margin-bottom: 35px;
@@ -257,7 +438,12 @@
 
 <body>
   <main id="top">
-    <section class="hero" aria-label="CASHMOVIE — Central de Downloads">
+
+    <!-- Banner principal -->
+    <section
+      class="hero"
+      aria-label="CASHMOVIE — Central de Downloads"
+    >
       <button
         class="support-reopen"
         id="support-reopen"
@@ -266,7 +452,10 @@
       >♥ Apoie o projeto</button>
     </section>
 
+    <!-- Catálogo e painel lateral -->
     <div class="catalog-layout">
+
+      <!-- Catálogo de aplicativos -->
       <section class="catalog" id="apps">
         <label class="search">
           <span class="search-icon" aria-hidden="true"></span>
@@ -280,10 +469,16 @@
         </label>
 
         <div class="catalog-info">
-          <span id="count" class="count">Carregando aplicativos...</span>
+          <span id="count" class="count">
+            Carregando aplicativos...
+          </span>
         </div>
 
-        <div id="app-grid" class="app-grid" aria-live="polite"></div>
+        <div
+          id="app-grid"
+          class="app-grid"
+          aria-live="polite"
+        ></div>
 
         <div id="empty" class="empty" hidden>
           <span>⌕</span>
@@ -292,13 +487,16 @@
         </div>
       </section>
 
+      <!-- Painel lateral: PIX e WhatsApp -->
       <aside
         class="support-panel"
         id="support-panel"
-        aria-label="Apoie o projeto"
+        aria-label="Apoio e contato CASHMOVIE"
       >
+
+        <!-- Apoie o projeto -->
         <div class="support-heading">
-          <span class="support-heart">♥</span>
+          <span class="support-heart" aria-hidden="true">♥</span>
           <h2>Apoie o projeto</h2>
         </div>
 
@@ -308,6 +506,7 @@
           Toda ajuda será bem-vinda!
         </p>
 
+        <!-- QR Code PIX -->
         <div class="support-qr" id="support-qr">
           <img
             class="support-qr-image"
@@ -316,6 +515,7 @@
           >
         </div>
 
+        <!-- Chave PIX -->
         <div class="support-key" id="support-key">
           <span>PIX copia e cola</span>
           <code id="pix-key">douglasgsia@jim.com</code>
@@ -332,9 +532,58 @@
           id="support-feedback"
           aria-live="polite"
         ></p>
+
+        <!-- Separação visual -->
+        <div class="contact-divider"></div>
+
+        <!-- Adquira a lista pelo WhatsApp -->
+        <section
+          class="list-contact"
+          aria-labelledby="list-contact-title"
+        >
+          <div class="list-contact-heading">
+            <span class="list-contact-icon" aria-hidden="true">
+              🛒
+            </span>
+
+            <h2 id="list-contact-title">
+              ADQUIRA NOSSA LISTA
+              <span>PELO WHATSAPP</span>
+            </h2>
+          </div>
+
+          <p>
+            Entre em contato pelo WhatsApp para adquirir
+            nossa lista de canais, filmes e séries da CASHMOVIE.
+          </p>
+
+          <a
+            class="whatsapp-button"
+            href="https://wa.me/5562984114810?text=Ol%C3%A1%2C%20gostaria%20de%20adquirir%20a%20lista%20de%20canais%20%2F%20filmes%20%2F%20series%20da%20CASHMOVIE."
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir WhatsApp para adquirir a lista CASHMOVIE"
+          >
+            <span class="whatsapp-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M20.5 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-4.8A8.4 8.4 0 1 1 20.5 11.5Z"/>
+                <path d="M8.5 7.7c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.6 1 1.5 1.9 2.6 2.4.3.1.5.1.7-.1l.9-1c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.5 0 .5-.2 1.1-.6 1.4-.5.5-1.2.8-2 .7-1.1-.1-2.6-.8-4.1-2.1-1.4-1.2-2.4-2.7-2.7-3.8-.3-.9-.1-1.7.6-2.5Z"/>
+              </svg>
+            </span>
+
+            <span class="whatsapp-button-text">
+              <strong>(62) 98411-4810</strong>
+              <small>CLIQUE AQUI PARA CHAMAR</small>
+            </span>
+
+            <span class="whatsapp-arrow" aria-hidden="true">›</span>
+          </a>
+        </section>
+
       </aside>
     </div>
 
+    <!-- Aviso de segurança -->
     <section class="notice">
       <span class="notice-icon">!</span>
       <div>
@@ -345,30 +594,35 @@
         </p>
       </div>
     </section>
+
   </main>
 
+  <!-- Rodapé -->
   <footer>
-    <a class="footer-brand" href="#top">CASH<span>MOVIE</span></a>
+    <a class="footer-brand" href="#top">
+      CASH<span>MOVIE</span>
+    </a>
     <p>Central independente de links para aplicativos.</p>
-    <small>Use apenas arquivos que você tem autorização para distribuir.</small>
+    <small>
+      Use apenas arquivos que você tem autorização para distribuir.
+    </small>
   </footer>
 
+  <!-- Arquivos originais do catálogo -->
   <script src="apps.js"></script>
   <script src="script.js"></script>
 
+  <!-- Funcionalidade de copiar o PIX -->
   <script>
     const PIX_KEY = "douglasgsia@jim.com";
 
-    const panel = document.getElementById("support-panel");
     const copyButton = document.getElementById("support-copy");
     const pixKeyElement = document.getElementById("pix-key");
     const feedback = document.getElementById("support-feedback");
     const qrImage = document.querySelector(".support-qr-image");
+    const qrContainer = document.getElementById("support-qr");
 
-    panel.hidden = false;
     pixKeyElement.textContent = PIX_KEY;
-
-    document.getElementById("support-reopen").hidden = true;
 
     copyButton.addEventListener("click", async () => {
       try {
@@ -380,6 +634,7 @@
         field.setAttribute("readonly", "");
         field.style.position = "fixed";
         field.style.left = "-9999px";
+
         document.body.appendChild(field);
         field.select();
 
@@ -399,7 +654,7 @@
       message.textContent =
         "Não foi possível carregar imagens/qrcodepix.jpeg.";
 
-      document.getElementById("support-qr").appendChild(message);
+      qrContainer.appendChild(message);
     });
   </script>
 </body>
