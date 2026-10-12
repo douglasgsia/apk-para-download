@@ -1,0 +1,11 @@
+RECUPERAÇÃO DO SITE
+
+Arquivos incluídos:
+- index.html: estrutura original com painel de apoio adicionado.
+- style.css: CSS original enviado por você, com estilos isolados do painel.
+- apps.js: lista corrigida (uma única declaração de const apps).
+- script.js: script original de busca e filtros.
+
+IMPORTANTE: os campos PIX_KEY e QR_IMAGE no index.html estão vazios. Para ativar a cópia do PIX, edite PIX_KEY. Para mostrar o QR, informe em QR_IMAGE o caminho/URL público da imagem.
+
+Publique estes arquivos juntos na mesma pasta. O arquivo iborevenda.jpg não estava entre os arquivos enviados nesta conversa; se quiser o ícone personalizado, adicione-o à mesma pasta.
