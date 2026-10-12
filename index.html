@@ -10,55 +10,169 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* PAINEL FIXO E SEM MINIMIZAR/MAXIMIZAR */
-    .support-panel {
-      position: sticky !important;
-      top: 20px;
-      right: auto !important;
-      bottom: auto !important;
-      width: 100%;
-      max-height: none !important;
-      height: auto !important;
-      overflow: visible !important;
+    /* ESTRUTURA: APLICATIVOS À ESQUERDA, APOIO À DIREITA */
+    .content-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      align-items: start;
+      gap: 24px;
+      width: min(1500px, 100%);
+      margin: 0 auto;
+      padding: 24px;
       box-sizing: border-box;
-      align-self: start;
-      z-index: 5;
     }
 
-    .support-panel[hidden],
+    .main-content {
+      min-width: 0;
+    }
+
+    .main-content .catalog {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0 0 32px;
+    }
+
+    .main-content .notice {
+      width: 100%;
+      margin: 0 0 25px;
+      box-sizing: border-box;
+    }
+
+    /* PAINEL LATERAL SEM MINIMIZAR */
+    .support-panel {
+      display: block !important;
+      position: relative !important;
+      inset: auto !important;
+      align-self: start;
+      width: 100% !important;
+      max-width: none !important;
+      height: auto !important;
+      max-height: none !important;
+      margin: 0 !important;
+      padding: 20px !important;
+      overflow: visible !important;
+      box-sizing: border-box;
+      border: 1px solid #71303a;
+      border-radius: 14px;
+      background: #110a0b;
+      color: #f6f3f3;
+      text-align: center;
+      box-shadow: 0 8px 25px #0005;
+    }
+
     .support-close,
     .support-reopen {
       display: none !important;
     }
 
+    .support-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .support-heading h2 {
+      margin: 0;
+      font-size: 19px;
+    }
+
+    .support-message {
+      color: #bdb3b3;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .support-qr {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 150px;
+      padding: 12px;
+      border: 1px dashed #71303a;
+      border-radius: 10px;
+      background: #090707;
+      box-sizing: border-box;
+    }
+
+    .support-qr-image {
+      display: block;
+      width: 100%;
+      max-width: 190px;
+      height: auto;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .support-key {
+      margin-top: 12px;
+      text-align: left;
+    }
+
+    .support-key span {
+      display: block;
+      margin-bottom: 5px;
+      color: #bdb3b3;
+      font-size: 11px;
+    }
+
+    .support-key code {
+      display: block;
+      padding: 10px;
+      overflow-wrap: anywhere;
+      border: 1px solid #542126;
+      border-radius: 7px;
+      background: #090707;
+      color: #fff;
+      font-size: 11px;
+    }
+
+    .support-copy {
+      width: 100%;
+      min-height: 42px;
+      margin-top: 12px;
+      border: 1px solid #ff4656;
+      border-radius: 8px;
+      background: linear-gradient(100deg, #ff142b, #bd0018);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .support-feedback {
+      min-height: 14px;
+      color: #ff5968;
+      font-size: 10px;
+    }
+
+    /* CONTATO WHATSAPP */
     .whatsapp-section {
       width: 100%;
-      box-sizing: border-box;
       margin-top: 20px;
       padding: 16px;
-      background: #111010;
+      box-sizing: border-box;
       border: 1px solid #352323;
-      border-radius: 14px;
-      color: #fff;
+      border-radius: 12px;
+      background: #151313;
     }
 
     .whatsapp-heading {
       margin: 0 0 12px;
       color: #fff;
-      font-size: 19px;
-      font-weight: 800;
-      line-height: 1.35;
+      font-size: 18px;
+      line-height: 1.4;
       text-align: center;
     }
 
     .whatsapp-heading span {
       display: block;
-      color: #ff3030;
+      color: #ff263c;
     }
 
     .whatsapp-description {
       margin: 0 0 16px;
-      color: #c9c9c9;
+      color: #bdb3b3;
       font-size: 12px;
       line-height: 1.6;
       text-align: center;
@@ -70,11 +184,10 @@
       justify-content: center;
       gap: 10px;
       width: 100%;
-      min-height: 64px;
-      box-sizing: border-box;
+      min-height: 65px;
       padding: 12px;
-      border: 0;
-      border-radius: 10px;
+      box-sizing: border-box;
+      border-radius: 9px;
       background: #25D366;
       color: #fff !important;
       text-align: center;
@@ -83,7 +196,6 @@
       font-weight: 800;
       line-height: 1.4;
       overflow-wrap: anywhere;
-      cursor: pointer;
       transition: background .2s ease;
     }
 
@@ -93,7 +205,7 @@
 
     .whatsapp-icon {
       flex-shrink: 0;
-      font-size: 27px;
+      font-size: 26px;
     }
 
     .whatsapp-button-text {
@@ -105,29 +217,95 @@
     .whatsapp-button-text small {
       margin-top: 4px;
       font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .3px;
     }
 
-    /* DESKTOP: aplicativos à esquerda e painel à direita */
-    @media (min-width: 1100px) {
-      body > main#top {
-        width: 100%;
+    /* BANNER: MELHOR CONTRASTE PARA O TEXTO */
+    .hero {
+      isolation: isolate;
+    }
+
+    .hero:before {
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.88) 0%,
+          rgba(0,0,0,.70) 42%,
+          rgba(0,0,0,.12) 100%
+        ),
+        linear-gradient(
+          0deg,
+          rgba(0,0,0,.38),
+          rgba(0,0,0,.12)
+        );
+      opacity: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      padding: 12px 0;
+      text-shadow: 0 2px 8px #000, 0 0 18px #000;
+    }
+
+    .hero h1 {
+      color: #fff;
+      text-shadow: 0 2px 8px #000, 0 0 18px #000;
+    }
+
+    .hero h1 span {
+      color: #ff263c;
+      text-shadow: 0 2px 8px #000, 0 0 18px #000;
+    }
+
+    /* TELAS MENORES: CONTEÚDO EMPILHADO SEM SOBREPOSIÇÃO */
+    @media (max-width: 900px) {
+      .content-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        padding: 20px 16px;
+      }
+
+      .support-panel {
+        width: 100% !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
+      }
+
+      .main-content .catalog {
+        padding-bottom: 25px;
+      }
+
+      .hero:before {
+        background:
+          linear-gradient(
+            90deg,
+            rgba(0,0,0,.88),
+            rgba(0,0,0,.55)
+          ),
+          linear-gradient(
+            0deg,
+            rgba(0,0,0,.25),
+            rgba(0,0,0,.25)
+          );
       }
     }
 
-    /* CELULAR E TABLET: painel fica abaixo do catálogo */
-    @media (max-width: 900px) {
+    @media (max-width: 480px) {
+      .content-layout {
+        padding: 18px 12px;
+      }
+
       .support-panel {
-        position: static !important;
-        width: auto;
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 18px;
+        padding: 16px !important;
       }
 
       .whatsapp-section {
-        padding: 14px;
+        padding: 13px;
       }
     }
   </style>
@@ -135,6 +313,7 @@
 
 <body>
   <main id="top">
+    <!-- BANNER ORIGINAL NO TOPO -->
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-copy">
@@ -143,7 +322,10 @@
             CENTRAL DE DOWNLOADS
           </div>
 
-          <h1>Seus aplicativos.<br><span>Em um só lugar.</span></h1>
+          <h1>
+            Seus aplicativos.<br>
+            <span>Em um só lugar.</span>
+          </h1>
         </div>
 
         <a class="cinema-logo" href="#top" aria-label="CASHMOVIE">
@@ -152,109 +334,114 @@
       </div>
     </section>
 
-    <section class="catalog" id="apps">
-      <label class="search">
-        <span class="search-icon" aria-hidden="true"></span>
-        <input
-          id="search"
-          type="search"
-          placeholder="Buscar por nome ou categoria..."
-          autocomplete="off"
-          aria-label="Buscar aplicativos"
-        >
-      </label>
+    <!-- COLUNA DE APLICATIVOS + PAINEL LATERAL -->
+    <div class="content-layout">
+      <div class="main-content">
+        <section class="catalog" id="apps">
+          <label class="search">
+            <span class="search-icon" aria-hidden="true"></span>
+            <input
+              id="search"
+              type="search"
+              placeholder="Buscar por nome ou categoria..."
+              autocomplete="off"
+              aria-label="Buscar aplicativos"
+            >
+          </label>
 
-      <div class="catalog-info">
-        <span id="count" class="count">Carregando aplicativos...</span>
+          <div class="catalog-info">
+            <span id="count" class="count">Carregando aplicativos...</span>
+          </div>
+
+          <div id="app-grid" class="app-grid" aria-live="polite"></div>
+
+          <div id="empty" class="empty" hidden>
+            <span>⌕</span>
+            <h3>Nenhum aplicativo encontrado</h3>
+            <p>Tente buscar por outro nome.</p>
+          </div>
+        </section>
+
+        <section class="notice">
+          <span class="notice-icon">!</span>
+          <div>
+            <h3>Baixe com atenção</h3>
+            <p>
+              Instale apenas aplicativos de fontes em que você confia.
+              Confira a origem e as permissões antes de instalar.
+            </p>
+          </div>
+        </section>
       </div>
 
-      <div id="app-grid" class="app-grid" aria-live="polite"></div>
+      <!-- PAINEL FIXO: SEM X E SEM MINIMIZAR -->
+      <aside
+        class="support-panel"
+        id="support-panel"
+        aria-label="Apoie o projeto e contato"
+      >
+        <div class="support-heading">
+          <span class="support-heart">♥</span>
+          <h2>Apoie o projeto</h2>
+        </div>
 
-      <div id="empty" class="empty" hidden>
-        <span>⌕</span>
-        <h3>Nenhum aplicativo encontrado</h3>
-        <p>Tente buscar por outro nome.</p>
-      </div>
-    </section>
-
-    <section class="notice">
-      <span class="notice-icon">!</span>
-      <div>
-        <h3>Baixe com atenção</h3>
-        <p>
-          Instale apenas aplicativos de fontes em que você confia.
-          Confira a origem e as permissões antes de instalar.
+        <p class="support-message">
+          Este site é totalmente gratuito. Se ele ajudou você,
+          considere contribuir para manter o projeto no ar.
+          Toda ajuda será bem-vinda!
         </p>
-      </div>
-    </section>
+
+        <div class="support-qr" id="support-qr">
+          <img
+            class="support-qr-image"
+            src="imagens/qrcodepix.jpeg"
+            alt="QR Code PIX para apoiar o projeto"
+          >
+        </div>
+
+        <div class="support-key">
+          <span>PIX copia e cola</span>
+          <code id="pix-key">douglasgsia@jim.com</code>
+        </div>
+
+        <button class="support-copy" id="support-copy" type="button">
+          ▣ COPIA E COLA
+        </button>
+
+        <p
+          class="support-feedback"
+          id="support-feedback"
+          aria-live="polite"
+        ></p>
+
+        <section class="whatsapp-section" id="whatsapp-contact">
+          <h2 class="whatsapp-heading">
+            ADQUIRA NOSSA LISTA
+            <span>PELO WHATSAPP</span>
+          </h2>
+
+          <p class="whatsapp-description">
+            Entre em contato pelo WhatsApp para adquirir nossa
+            lista completa de canais, filmes e séries.
+          </p>
+
+          <a
+            class="whatsapp-button"
+            href="https://wa.me/5562984114810?text=Ol%C3%A1%2C%20gostaria%20de%20adquirir%20a%20lista%20de%20canais%20%2F%20filmes%20%2F%20series%20da%20CASHMOVIE."
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Adquirir a lista CASHMOVIE pelo WhatsApp"
+          >
+            <span class="whatsapp-icon" aria-hidden="true">☏</span>
+            <span class="whatsapp-button-text">
+              <span>(62) 98411-4810</span>
+              <small>CLIQUE AQUI PARA CHAMAR ↗</small>
+            </span>
+          </a>
+        </section>
+      </aside>
+    </div>
   </main>
-
-  <!-- APOIE E WHATSAPP SEMPRE VISÍVEIS -->
-  <aside
-    class="support-panel"
-    id="support-panel"
-    aria-label="Apoie o projeto e contato"
-  >
-    <div class="support-heading">
-      <span class="support-heart">♥</span>
-      <h2>Apoie o projeto</h2>
-    </div>
-
-    <p class="support-message">
-      Este site é totalmente gratuito. Se ele ajudou você,
-      considere contribuir para manter o projeto no ar.
-      Toda ajuda será bem-vinda!
-    </p>
-
-    <div class="support-qr" id="support-qr">
-      <img
-        class="support-qr-image"
-        src="imagens/qrcodepix.jpeg"
-        alt="QR Code PIX para apoiar o projeto"
-      >
-    </div>
-
-    <div class="support-key">
-      <span>PIX copia e cola</span>
-      <code id="pix-key">douglasgsia@jim.com</code>
-    </div>
-
-    <button class="support-copy" id="support-copy" type="button">
-      ▣ COPIA E COLA
-    </button>
-
-    <p
-      class="support-feedback"
-      id="support-feedback"
-      aria-live="polite"
-    ></p>
-
-    <section class="whatsapp-section" id="whatsapp-contact">
-      <h2 class="whatsapp-heading">
-        ADQUIRA NOSSA LISTA
-        <span>PELO WHATSAPP</span>
-      </h2>
-
-      <p class="whatsapp-description">
-        Entre em contato pelo WhatsApp para adquirir nossa
-        lista completa de canais, filmes e séries.
-      </p>
-
-      <a
-        class="whatsapp-button"
-        href="https://wa.me/5562984114810?text=Ol%C3%A1%2C%20gostaria%20de%20adquirir%20a%20lista%20de%20canais%20%2F%20filmes%20%2F%20series%20da%20CASHMOVIE."
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Adquirir a lista CASHMOVIE pelo WhatsApp"
-      >
-        <span class="whatsapp-icon" aria-hidden="true">☏</span>
-        <span class="whatsapp-button-text">
-          <span>(62) 98411-4810</span>
-          <small>CLIQUE AQUI PARA CHAMAR ↗</small>
-        </span>
-      </a>
-    </section>
-  </aside>
 
   <footer>
     <a class="footer-brand" href="#top">CASH<span>MOVIE</span></a>
