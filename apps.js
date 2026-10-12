@@ -1,5 +1,5 @@
 
-const apps = [
+window.apps = [
   {
     name: "IBO Revenda",
     category: "Players",
