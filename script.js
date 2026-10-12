@@ -48,9 +48,7 @@ categoriesEl.addEventListener('click', event => {
 
 searchInput.addEventListener('input', render);
 
-// Inicia o download sem abrir uma nova aba.
-// Funciona com arquivos do mesmo domínio e com
-// servidores externos que permitem requisições CORS.
+// Tenta baixar o arquivo sem abrir outra aba.
 grid.addEventListener('click', async event => {
   const link = event.target.closest('a.download');
 
@@ -61,14 +59,14 @@ grid.addEventListener('click', async event => {
   const url = link.href;
   const originalText = link.textContent;
 
-  link.style.pointerEvents = 'none';
   link.textContent = 'Preparando download...';
+  link.style.pointerEvents = 'none';
 
   try {
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error('Não foi possível baixar o arquivo.');
+      throw new Error('Falha no download');
     }
 
     const blob = await response.blob();
@@ -76,7 +74,7 @@ grid.addEventListener('click', async event => {
     const downloadLink = document.createElement('a');
 
     downloadLink.href = objectUrl;
-    downloadLink.download = '';
+    downloadLink.download = 'aplicativo.apk';
     downloadLink.style.display = 'none';
 
     document.body.appendChild(downloadLink);
@@ -85,13 +83,11 @@ grid.addEventListener('click', async event => {
 
     setTimeout(() => URL.revokeObjectURL(objectUrl), 60000);
   } catch (error) {
-    // Alternativa para links externos que bloqueiam CORS.
-    // Navega na mesma aba, sem solicitar abertura de nova aba.
-    window.location.assign(url);
-    return;
+    // Se o Google Drive bloquear o fetch, usa a mesma aba.
+    window.location.href = url;
   } finally {
-    link.style.pointerEvents = '';
     link.textContent = originalText;
+    link.style.pointerEvents = '';
   }
 });
 
@@ -148,6 +144,7 @@ function render() {
           class="download"
           href="${safe(app.url)}"
           download
+          target="_self"
           rel="noopener noreferrer"
         >↓ Baixar APK</a>`
       : `<span
