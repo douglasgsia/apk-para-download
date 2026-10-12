@@ -10,23 +10,24 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Painel de apoio sempre visível */
-    .support-panel[hidden] {
-      display: block !important;
-    }
-
+    /* Painel de apoio sempre aberto */
     .support-panel {
-      display: block;
+      display: block !important;
       position: fixed;
       z-index: 9999;
     }
 
-    /* Não exibir controles para fechar ou minimizar */
-    .support-close {
+    .support-panel[hidden] {
+      display: block !important;
+    }
+
+    /* Remove os controles de fechar e reabrir */
+    .support-close,
+    .support-reopen {
       display: none !important;
     }
 
-    /* O QR Code permanece centralizado no painel */
+    /* Imagem verdadeira do QR Code PIX */
     .support-qr {
       display: flex;
       flex-direction: column;
@@ -41,11 +42,14 @@
       max-width: 220px;
       height: auto;
       object-fit: contain;
+      border-radius: 8px;
     }
 
-    /* Impede que o botão de reabrir apareça */
-    .support-reopen {
-      display: none !important;
+    /* Chave PIX */
+    .support-key code {
+      display: block;
+      overflow-wrap: anywhere;
+      user-select: all;
     }
   </style>
 </head>
@@ -104,7 +108,7 @@
     <small>Use apenas arquivos que você tem autorização para distribuir.</small>
   </footer>
 
-  <!-- Painel de apoio permanente -->
+  <!-- Painel permanente de apoio -->
   <aside
     class="support-panel"
     id="support-panel"
@@ -122,18 +126,23 @@
     </p>
 
     <div class="support-qr" id="support-qr">
-      <span class="qr-placeholder">QR CODE PIX</span>
-      <small>QR Code será adicionado aqui</small>
+      <img
+        class="support-qr-image"
+        src="imagens/qrcodepix.jpeg"
+        alt="QR Code PIX para apoiar o CASHMOVIE"
+      >
     </div>
 
-    <div class="support-key" id="support-key" hidden>
+    <div class="support-key" id="support-key">
       <span>PIX copia e cola</span>
-      <code id="pix-key"></code>
+      <code id="pix-key">douglasgsia@jim.com</code>
     </div>
 
-    <button class="support-copy" id="support-copy" type="button" disabled>
-      ▣ COPIA E COLA
-    </button>
+    <button
+      class="support-copy"
+      id="support-copy"
+      type="button"
+    >▣ COPIA E COLA</button>
 
     <p
       class="support-feedback"
@@ -146,63 +155,56 @@
   <script src="script.js"></script>
 
   <script>
-    /*
-     * Insira aqui os dados verdadeiros do PIX.
-     * PIX_KEY: código PIX copia e cola fornecido pelo banco.
-     * QR_IMAGE: caminho ou URL da imagem real do QR Code.
-     */
-    const PIX_KEY = "";
-    const QR_IMAGE = "";
+    const PIX_KEY = "douglasgsia@jim.com";
 
     const panel = document.getElementById("support-panel");
     const copyButton = document.getElementById("support-copy");
     const pixKeyElement = document.getElementById("pix-key");
-    const keyContainer = document.getElementById("support-key");
-    const qrContainer = document.getElementById("support-qr");
     const feedback = document.getElementById("support-feedback");
 
-    // Mantém o painel visível e elimina o estado oculto.
+    // Garante que o painel comece aberto.
     panel.hidden = false;
+    pixKeyElement.textContent = PIX_KEY;
+
+    // Impede o botão de reabrir de aparecer.
     document.getElementById("support-reopen").hidden = true;
 
-    if (PIX_KEY.trim()) {
-      pixKeyElement.textContent = PIX_KEY.trim();
-      keyContainer.hidden = false;
-      copyButton.disabled = false;
-    }
-
-    if (QR_IMAGE.trim()) {
-      const image = document.createElement("img");
-      image.className = "support-qr-image";
-      image.src = QR_IMAGE.trim();
-      image.alt = "QR Code PIX para apoiar o projeto";
-
-      image.onerror = () => {
-        qrContainer.replaceChildren();
-
-        const placeholder = document.createElement("span");
-        placeholder.className = "qr-placeholder";
-        placeholder.textContent = "QR CODE PIX";
-
-        const message = document.createElement("small");
-        message.textContent = "Não foi possível carregar a imagem do QR Code.";
-
-        qrContainer.append(placeholder, message);
-      };
-
-      qrContainer.replaceChildren(image);
-    }
-
+    // Copia a chave PIX informada.
     copyButton.addEventListener("click", async () => {
-      if (!PIX_KEY.trim()) return;
-
       try {
-        await navigator.clipboard.writeText(PIX_KEY.trim());
-        feedback.textContent = "Código PIX copiado!";
+        await navigator.clipboard.writeText(PIX_KEY);
+        feedback.textContent = "Chave PIX copiada com sucesso!";
       } catch {
-        feedback.textContent =
-          "Não foi possível copiar automaticamente. Selecione e copie a chave PIX.";
+        const temporaryField = document.createElement("textarea");
+        temporaryField.value = PIX_KEY;
+        temporaryField.setAttribute("readonly", "");
+        temporaryField.style.position = "fixed";
+        temporaryField.style.left = "-9999px";
+
+        document.body.appendChild(temporaryField);
+        temporaryField.select();
+
+        const copied = document.execCommand("copy");
+        temporaryField.remove();
+
+        feedback.textContent = copied
+          ? "Chave PIX copiada com sucesso!"
+          : "Não foi possível copiar. Selecione e copie a chave PIX exibida.";
       }
+    });
+
+    // Informa se a imagem do QR Code não carregar.
+    const qrImage = document.querySelector(".support-qr-image");
+
+    qrImage.addEventListener("error", () => {
+      qrImage.alt = "Não foi possível carregar o QR Code PIX.";
+      qrImage.style.display = "none";
+
+      const errorMessage = document.createElement("small");
+      errorMessage.textContent =
+        "Não foi possível carregar o QR Code. Confira o arquivo imagens/qrcodepix.jpeg.";
+
+      document.getElementById("support-qr").appendChild(errorMessage);
     });
   </script>
 </body>
