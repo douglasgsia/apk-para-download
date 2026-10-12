@@ -4,63 +4,68 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090d0b">
-  <meta name="description" content="Central de aplicativos para Android, TV Box e Android TV.">
-  <title>Central de Downloads</title>
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="CASHMOVIE — Central de Downloads.">
+  <title>CASHMOVIE | Central de Downloads</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <main id="top">
     <section class="hero">
-      <div class="eyebrow">
-        <span class="pulse"></span>
-        CENTRAL DE DOWNLOADS
+      <div class="cinema-effects" aria-hidden="true">
+        <div class="film film-left"></div>
+        <div class="film film-right"></div>
+        <div class="light-beam beam-one"></div>
+        <div class="light-beam beam-two"></div>
       </div>
 
-      <h1>Seus aplicativos.<br><span>Em um só lugar.</span></h1>
+      <a class="support-reopen" id="support-reopen" href="#support-panel">
+        ♥ Apoie o projeto
+      </a>
 
-      <div class="hero-orb orb-one"></div>
-      <div class="hero-orb orb-two"></div>
+      <div class="hero-content">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="pulse"></span>
+            CENTRAL DE DOWNLOADS
+          </div>
+
+          <h1>Seus aplicativos.<br><span>Em um só lugar.</span></h1>
+        </div>
+
+        <a class="cinema-logo" href="#top" aria-label="CASHMOVIE">
+          <span>CASH</span><span class="logo-red">MOVIE</span>
+        </a>
+      </div>
     </section>
 
     <section class="catalog" id="apps">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">BIBLIOTECA</div>
-          <h2>Central de aplicativos</h2>
-        </div>
-        <span id="count" class="count">0 aplicativos</span>
-      </div>
-
       <label class="search">
-        <span aria-hidden="true">⌕</span>
+        <span class="search-icon" aria-hidden="true"></span>
         <input
           id="search"
           type="search"
           placeholder="Buscar por nome ou categoria..."
           autocomplete="off"
+          aria-label="Buscar aplicativos"
         >
-        <kbd>BUSCAR</kbd>
       </label>
 
-      <nav
-        id="categories"
-        class="categories"
-        aria-label="Filtrar por categoria"
-      ></nav>
+      <div class="catalog-info">
+        <span id="count" class="count">Carregando aplicativos...</span>
+      </div>
 
       <div id="app-grid" class="app-grid" aria-live="polite"></div>
 
       <div id="empty" class="empty" hidden>
         <span>⌕</span>
         <h3>Nenhum aplicativo encontrado</h3>
-        <p>Tente outro nome ou escolha uma categoria diferente.</p>
+        <p>Tente buscar por outro nome.</p>
       </div>
     </section>
 
     <section class="notice">
-      <span class="notice-icon">✓</span>
+      <span class="notice-icon">!</span>
       <div>
         <h3>Baixe com atenção</h3>
         <p>
@@ -73,13 +78,13 @@
 
   <footer>
     <a class="footer-brand" href="#top">
-      APK <span>PARA DOWNLOAD</span>
+      CASH<span>MOVIE</span>
     </a>
-    <p>Central independente de links para aplicativos Android.</p>
+    <p>Central independente de links para aplicativos.</p>
     <small>Use apenas arquivos que você tem autorização para distribuir.</small>
   </footer>
 
-  <aside class="support-panel" id="support-panel" aria-label="Apoie o projeto">
+  <aside class="support-panel" id="support-panel" aria-label="Apoie o projeto" hidden>
     <button
       class="support-close"
       id="support-close"
@@ -108,28 +113,12 @@
       <code id="pix-key"></code>
     </div>
 
-    <button
-      class="support-copy"
-      id="support-copy"
-      type="button"
-      disabled
-    >
-      <span>▣</span> COPIA E COLA
+    <button class="support-copy" id="support-copy" type="button" disabled>
+      ▣ COPIA E COLA
     </button>
 
-    <p
-      class="support-feedback"
-      id="support-feedback"
-      aria-live="polite"
-    ></p>
+    <p class="support-feedback" id="support-feedback" aria-live="polite"></p>
   </aside>
-
-  <button
-    class="support-reopen"
-    id="support-reopen"
-    type="button"
-    hidden
-  >♥ Apoie o projeto</button>
 
   <script src="apps.js"></script>
   <script src="script.js"></script>
@@ -146,6 +135,13 @@
     const qrContainer = document.getElementById("support-qr");
     const feedback = document.getElementById("support-feedback");
 
+    // O painel começa fechado e abre pelo botão do cabeçalho.
+    reopen.addEventListener("click", event => {
+      event.preventDefault();
+      panel.hidden = false;
+      reopen.hidden = true;
+    });
+
     if (PIX_KEY.trim()) {
       pixKeyElement.textContent = PIX_KEY.trim();
       keyContainer.hidden = false;
@@ -153,7 +149,7 @@
     }
 
     if (QR_IMAGE.trim()) {
-      qrContainer.innerHTML = "";
+      qrContainer.replaceChildren();
 
       const image = document.createElement("img");
       image.className = "support-qr-image";
@@ -168,11 +164,6 @@
       reopen.hidden = false;
     });
 
-    reopen.addEventListener("click", () => {
-      panel.hidden = false;
-      reopen.hidden = true;
-    });
-
     copyButton.addEventListener("click", async () => {
       if (!PIX_KEY.trim()) return;
 
@@ -185,6 +176,5 @@
       }
     });
   </script>
-
 </body>
 </html>
