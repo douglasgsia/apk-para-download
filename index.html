@@ -9,84 +9,113 @@
   <title>Central de Downloads</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header class="topbar">
-    <a class="brand" href="#top" aria-label="Início">
-      <span class="brand-mark">APK</span>
-    </a>
+    <a class="brand" href="#top" aria-label="Início"></a>
+
     <a class="header-link" href="#apps">
       Ver aplicativos <span>↘</span>
     </a>
   </header>
 
   <main id="top">
+
+    <!-- APRESENTAÇÃO -->
     <section class="hero">
       <div class="eyebrow">
         <span class="pulse"></span>
         CENTRAL DE DOWNLOADS
       </div>
 
-      <h1>Seus aplicativos.<br><span>Em um só lugar.</span></h1>
+      <h1>
+        Seus aplicativos.<br>
+        <span>Em um só lugar.</span>
+      </h1>
 
       <div class="hero-orb orb-one"></div>
       <div class="hero-orb orb-two"></div>
     </section>
 
+    <!-- CATÁLOGO DE APLICATIVOS -->
     <section class="catalog" id="apps">
+
       <div class="section-heading">
         <div>
           <div class="eyebrow">BIBLIOTECA</div>
           <h2>Central de aplicativos</h2>
         </div>
+
         <span id="count" class="count">0 aplicativos</span>
       </div>
 
+      <!-- BUSCA -->
       <label class="search">
         <span aria-hidden="true">⌕</span>
+
         <input
           id="search"
           type="search"
           placeholder="Buscar por nome ou categoria..."
           autocomplete="off"
         >
+
         <kbd>BUSCAR</kbd>
       </label>
 
+      <!-- CATEGORIAS -->
       <nav
         id="categories"
         class="categories"
         aria-label="Filtrar por categoria"
       ></nav>
 
-      <div id="app-grid" class="app-grid" aria-live="polite"></div>
+      <!-- APLICATIVOS -->
+      <div
+        id="app-grid"
+        class="app-grid"
+        aria-live="polite"
+      ></div>
 
+      <!-- MENSAGEM QUANDO NÃO HÁ RESULTADOS -->
       <div id="empty" class="empty" hidden>
         <span>⌕</span>
         <h3>Nenhum aplicativo encontrado</h3>
-        <p>Tente outro nome ou escolha uma categoria diferente.</p>
+        <p>
+          Tente outro nome ou escolha uma categoria diferente.
+        </p>
       </div>
+
     </section>
 
+    <!-- AVISO -->
     <section class="notice">
       <span class="notice-icon">✓</span>
+
       <div>
         <h3>Baixe com atenção</h3>
+
         <p>
           Instale apenas aplicativos de fontes em que você confia.
           Confira a origem e as permissões antes de instalar.
         </p>
       </div>
     </section>
+
   </main>
 
+  <!-- RODAPÉ -->
   <footer>
     <p>Central independente de links para aplicativos Android.</p>
+
     <small>
       Use apenas arquivos que você tem autorização para distribuir.
     </small>
   </footer>
 
+  <!-- SCRIPTS ORIGINAIS -->
   <script src="apps.js"></script>
   <script src="script.js"></script>
+
 </body>
 </html>
