@@ -48,4 +48,4 @@ window.apps = [
     icon: "https://raw.githubusercontent.com/douglasgsia/apk-para-download/main/imagens/vurevenda.jpg",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/VU+REVENDA.xapk"
   }
-
+];
