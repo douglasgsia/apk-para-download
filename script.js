@@ -27,9 +27,7 @@ categoriesEl.innerHTML = categories.map(category => `
     type="button"
     data-category="${safe(category)}"
     aria-pressed="${category === activeCategory}"
-  >
-    ${safe(category)}
-  </button>
+  >${safe(category)}</button>
 `).join('');
 
 categoriesEl.addEventListener('click', event => {
@@ -103,6 +101,7 @@ function render() {
       ? `<a
            class="download"
            href="${safe(app.url)}"
+           download
            rel="noopener noreferrer"
          >↓ Baixar APK</a>`
       : `<span
