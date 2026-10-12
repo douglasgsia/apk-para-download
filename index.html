@@ -10,7 +10,27 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* WhatsApp dentro do painel lateral original */
+    /* PAINEL FIXO E SEM MINIMIZAR/MAXIMIZAR */
+    .support-panel {
+      position: sticky !important;
+      top: 20px;
+      right: auto !important;
+      bottom: auto !important;
+      width: 100%;
+      max-height: none !important;
+      height: auto !important;
+      overflow: visible !important;
+      box-sizing: border-box;
+      align-self: start;
+      z-index: 5;
+    }
+
+    .support-panel[hidden],
+    .support-close,
+    .support-reopen {
+      display: none !important;
+    }
+
     .whatsapp-section {
       width: 100%;
       box-sizing: border-box;
@@ -89,18 +109,33 @@
       letter-spacing: .3px;
     }
 
-    /* O painel continua usando o posicionamento do style.css.
-       Não definir position: static aqui. */
+    /* DESKTOP: aplicativos à esquerda e painel à direita */
+    @media (min-width: 1100px) {
+      body > main#top {
+        width: 100%;
+      }
+    }
+
+    /* CELULAR E TABLET: painel fica abaixo do catálogo */
+    @media (max-width: 900px) {
+      .support-panel {
+        position: static !important;
+        width: auto;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 18px;
+      }
+
+      .whatsapp-section {
+        padding: 14px;
+      }
+    }
   </style>
 </head>
 
 <body>
   <main id="top">
     <section class="hero">
-      <a class="support-reopen" id="support-reopen" href="#support-panel">
-        ♥ Apoie o projeto
-      </a>
-
       <div class="hero-inner">
         <div class="hero-copy">
           <div class="eyebrow">
@@ -154,29 +189,12 @@
     </section>
   </main>
 
-  <footer>
-    <a class="footer-brand" href="#top">CASH<span>MOVIE</span></a>
-    <p>Central independente de links para aplicativos.</p>
-    <small>
-      Use apenas arquivos que você tem autorização para distribuir.
-    </small>
-  </footer>
-
-  <!-- PAINEL LATERAL: PIX E WHATSAPP -->
+  <!-- APOIE E WHATSAPP SEMPRE VISÍVEIS -->
   <aside
     class="support-panel"
     id="support-panel"
-    aria-label="Apoio e contato"
-    hidden
+    aria-label="Apoie o projeto e contato"
   >
-    <button
-      class="support-close"
-      id="support-close"
-      type="button"
-      aria-label="Fechar painel"
-    >×</button>
-
-    <!-- APOIO PIX -->
     <div class="support-heading">
       <span class="support-heart">♥</span>
       <h2>Apoie o projeto</h2>
@@ -196,7 +214,7 @@
       >
     </div>
 
-    <div class="support-key" id="support-key">
+    <div class="support-key">
       <span>PIX copia e cola</span>
       <code id="pix-key">douglasgsia@jim.com</code>
     </div>
@@ -211,7 +229,6 @@
       aria-live="polite"
     ></p>
 
-    <!-- WHATSAPP LOGO ABAIXO DO PIX, NO MESMO PAINEL -->
     <section class="whatsapp-section" id="whatsapp-contact">
       <h2 class="whatsapp-heading">
         ADQUIRA NOSSA LISTA
@@ -231,7 +248,6 @@
         aria-label="Adquirir a lista CASHMOVIE pelo WhatsApp"
       >
         <span class="whatsapp-icon" aria-hidden="true">☏</span>
-
         <span class="whatsapp-button-text">
           <span>(62) 98411-4810</span>
           <small>CLIQUE AQUI PARA CHAMAR ↗</small>
@@ -240,36 +256,22 @@
     </section>
   </aside>
 
+  <footer>
+    <a class="footer-brand" href="#top">CASH<span>MOVIE</span></a>
+    <p>Central independente de links para aplicativos.</p>
+    <small>
+      Use apenas arquivos que você tem autorização para distribuir.
+    </small>
+  </footer>
+
   <script src="apps.js"></script>
   <script src="script.js"></script>
 
   <script>
     (() => {
       const PIX_KEY = "douglasgsia@jim.com";
-
-      const panel = document.getElementById("support-panel");
-      const reopen = document.getElementById("support-reopen");
-      const closeButton = document.getElementById("support-close");
       const copyButton = document.getElementById("support-copy");
-      const pixKeyElement = document.getElementById("pix-key");
       const feedback = document.getElementById("support-feedback");
-
-      if (!panel || !reopen || !closeButton || !copyButton) {
-        return;
-      }
-
-      pixKeyElement.textContent = PIX_KEY;
-
-      reopen.addEventListener("click", (event) => {
-        event.preventDefault();
-        panel.hidden = false;
-        reopen.hidden = true;
-      });
-
-      closeButton.addEventListener("click", () => {
-        panel.hidden = true;
-        reopen.hidden = false;
-      });
 
       copyButton.addEventListener("click", async () => {
         try {
