@@ -11,6 +11,58 @@
 </head>
 
 <body>
+  <!-- PAINEL FIXO DE APOIO -->
+  <aside class="support-panel" id="support-panel" aria-label="Apoie o projeto">
+    <button
+      type="button"
+      class="support-close"
+      id="support-close"
+      aria-label="Fechar painel de apoio"
+      title="Fechar"
+    >×</button>
+
+    <div class="support-heading">
+      <span class="support-heart" aria-hidden="true">♥</span>
+      <h2>Apoie o projeto</h2>
+    </div>
+
+    <p class="support-message">
+      Este site é totalmente gratuito. Se ele ajudou você,
+      considere contribuir para manter o projeto no ar.
+      Toda ajuda será bem-vinda!
+    </p>
+
+    <div class="support-qr" id="support-qr">
+      <span class="qr-placeholder">QR CODE PIX</span>
+      <small>QR Code será adicionado aqui</small>
+    </div>
+
+    <div class="support-key" id="support-key-row" hidden>
+      <span>Chave PIX:</span>
+      <code id="support-key"></code>
+    </div>
+
+    <button
+      type="button"
+      class="support-copy"
+      id="support-copy"
+      disabled
+    >
+      <span aria-hidden="true">▢</span> COPIA E COLA
+    </button>
+
+    <p class="support-feedback" id="support-feedback" aria-live="polite"></p>
+  </aside>
+
+  <button
+    type="button"
+    class="support-reopen"
+    id="support-reopen"
+    hidden
+  >
+    ♥ Apoie o projeto
+  </button>
+
   <main id="top">
 
     <!-- APRESENTAÇÃO -->
@@ -101,8 +153,107 @@
     </small>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- APLICATIVOS E CATÁLOGO -->
   <script src="apps.js"></script>
   <script src="script.js"></script>
+
+  <!-- CONFIGURAÇÃO DO PAINEL PIX -->
+  <script>
+    /*
+      Preencha quando tiver seus dados:
+
+      PIX_KEY: código PIX copia e cola.
+      QR_IMAGE: caminho da imagem QR Code no GitHub.
+
+      Exemplo:
+      const QR_IMAGE = "imagens/meu-qr-pix.png";
+    */
+
+    const PIX_KEY = "";
+    const QR_IMAGE = "";
+
+    const supportPanel = document.getElementById("support-panel");
+    const supportClose = document.getElementById("support-close");
+    const supportReopen = document.getElementById("support-reopen");
+    const supportQR = document.getElementById("support-qr");
+    const supportKeyRow = document.getElementById("support-key-row");
+    const supportKey = document.getElementById("support-key");
+    const supportCopy = document.getElementById("support-copy");
+    const supportFeedback = document.getElementById("support-feedback");
+
+    // Mostra o QR Code quando o arquivo for configurado.
+    if (QR_IMAGE) {
+      const qrImage = document.createElement("img");
+
+      qrImage.className = "support-qr-image";
+      qrImage.alt = "QR Code para contribuição via PIX";
+
+      qrImage.onload = () => {
+        supportQR.replaceChildren(qrImage);
+      };
+
+      qrImage.onerror = () => {
+        supportFeedback.textContent =
+          "Não foi possível carregar a imagem do QR Code.";
+      };
+
+      qrImage.src = QR_IMAGE;
+    }
+
+    // Exibe a chave e libera o botão quando houver um PIX configurado.
+    if (PIX_KEY.trim()) {
+      supportKey.textContent = PIX_KEY;
+      supportKeyRow.hidden = false;
+      supportCopy.disabled = false;
+    }
+
+    // Copia o código PIX.
+    supportCopy.addEventListener("click", async () => {
+      if (!PIX_KEY.trim()) return;
+
+      supportCopy.disabled = true;
+      supportFeedback.textContent = "Copiando...";
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(PIX_KEY);
+        } else {
+          const field = document.createElement("textarea");
+          field.value = PIX_KEY;
+          field.setAttribute("readonly", "");
+          field.style.position = "fixed";
+          field.style.left = "-9999px";
+
+          document.body.appendChild(field);
+          field.select();
+
+          const copied = document.execCommand("copy");
+          field.remove();
+
+          if (!copied) {
+            throw new Error("Não foi possível copiar.");
+          }
+        }
+
+        supportFeedback.textContent = "PIX copiado com sucesso!";
+      } catch (error) {
+        supportFeedback.textContent =
+          "Não foi possível copiar. Selecione a chave e copie manualmente.";
+      } finally {
+        supportCopy.disabled = false;
+      }
+    });
+
+    // Oculta e reabre o painel sem alterar a página.
+    supportClose.addEventListener("click", () => {
+      supportPanel.hidden = true;
+      supportReopen.hidden = false;
+    });
+
+    supportReopen.addEventListener("click", () => {
+      supportPanel.hidden = false;
+      supportReopen.hidden = true;
+    });
+  </script>
 </body>
 </html>
