@@ -39,13 +39,5 @@ window.apps = [
     version: "APK",
     icon: "https://raw.githubusercontent.com/douglasgsia/apk-para-download/main/imagens/rxpurple.jpg",
     url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/RX.Purple.apk"
-  },
-  {
-    name: "VU Revenda",
-    category: "Players",
-    description: "Aplicativo VU Revenda para dispositivos Android compatíveis.",
-    version: "XAPK",
-    icon: "https://raw.githubusercontent.com/douglasgsia/apk-para-download/main/imagens/vurevenda.jpg",
-    url: "https://github.com/douglasgsia/apk-para-download/releases/download/ibo-revenda/VU+REVENDA.xapk"
   }
 ];
